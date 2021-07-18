@@ -20,7 +20,7 @@ function Seller() {
                 {isSignup && <input type="text" name="name" placeholder="Name" onChange={(e) => setsellerDetails({ ...sellerDetails, name: e.target.value })} />}
                 <input type="text" name="email" placeholder="Email" onChange={(e) => setsellerDetails({ ...sellerDetails, email: e.target.value })} />
                 <input type="text" name="password" placeholder="Password" onChange={(e) => setsellerDetails({ ...sellerDetails, password: e.target.value })} />
-                <button type="submit">{isSignup ? "Register" : "Register"}</button>
+                <button type="submit">{isSignup ? "Register" : "Log In"}</button>
             </form>
             {isSignup ? <p>Already registered? <span onClick={handleSignup}>Log in</span></p> : <p>New here? <span onClick={handleSignup}>Register Now</span></p>}
 

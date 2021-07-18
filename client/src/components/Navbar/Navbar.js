@@ -36,7 +36,11 @@ function Navbar() {
             <div className="button-container">
                 {user ? <button onClick={logout}>Log Out</button>
                     :
-                    <Link to="/loginSeller" ><button>LogIn</button></Link>}
+                    <div>
+                        <Link to="/login" ><button>LogIn</button></Link>
+                        <Link to="/loginSeller" ><button>Seller</button></Link>
+                    </div>
+                }
 
             </div>
         </div>

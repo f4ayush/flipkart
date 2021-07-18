@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
 
+import home from './routes/home.js'
 import buyerRoutes from './routes/buyer.js'
 import sellerRoutes from './routes/seller.js'
 
@@ -12,7 +13,8 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
-app.use('/', buyerRoutes)
+app.use('/', home)
+app.use('/buyer', buyerRoutes)
 app.use('/seller', sellerRoutes)
 
 const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.2mj7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'

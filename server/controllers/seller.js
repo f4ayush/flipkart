@@ -27,16 +27,37 @@ const router = express.Router();
 //     }
 // }
 
-// export const createSeller = async (req, res) => {
-//     const item = req.body
-//     const newSeller = new sellerDescription(item)
-//     try {
-//         await newSeller.save();
-//         res.status(201).json(newSeller)
-//     } catch (error) {
-//         res.status(409).json({ message: error })
-//     }
+// export const updatePost = async (req, res) => {
+//     const { id } = req.params;
+//     const { title, message, creator, selectedFile, tags } = req.body;
+
+//     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+
+//     const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
+
+//     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+
+//     res.json(updatedPost);
 // }
+
+export const addProduct = async (req, res) => {
+    const { name, price, description, userId, image } = req.body;
+    console.log(req.body)
+    // if (!mongoose.Types.ObjectId.isValid(userId)) return res.status(404).send(`No user with id: ${userId}`);
+
+    try {
+        const seller = await sellerDescription.findById(userId);
+        // console.log(seller)
+        let key = seller.products.length
+        seller.products.push({ key: key + 1, name, price, description, image })
+
+        await sellerDescription.findByIdAndUpdate(userId, seller, { new: true })
+        res.json(seller)
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+}
+
 
 export const getProducts = async (req, res) => {
     try {

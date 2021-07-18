@@ -1,9 +1,9 @@
 import express from 'express';
-import { getProducts } from '../controllers/seller.js'
+import { loginBuyer, createBuyer } from '../controllers/buyer.js'
 
 const router = express.Router();
 
-router.get('/', getProducts)
-// router.get('/', getItems)
+router.post('/signUp', createBuyer)
+router.post('/login', loginBuyer)
 
 export default router;

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from './components/Admin/Admin'
 import Seller from './components/Login/Seller/Seller';
+import Buyer from './components/Login/Buyer/Buyer';
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
       <Switch>
         <Route path='/seller' exact component={Admin} />
         <Route path='/loginSeller' exact component={Seller} />
-        <Route path='/login' exact component={Seller} />
+        <Route path='/login' exact component={Buyer} />
       </Switch>
     </Router>
 

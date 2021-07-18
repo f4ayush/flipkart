@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
 
-const itemSchema = mongoose.Schema({
-    seller_id: { type: String, required: true },
-    products: { type: Array },
+const buyerSchema = mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true }
 })
 
-export default mongoose.model('User', itemSchema)
+var buyerDescription = mongoose.model('Buyer', buyerSchema)
+export default buyerDescription
