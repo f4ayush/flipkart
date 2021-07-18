@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { addProduct } from '../../api/index'
 import { useHistory } from 'react-router-dom'
 import FileBase from 'react-file-base64';
+import SellerProducts from "../Products/SellerProducts";
 
 export default function Admin() {
     const [sellerDetails, setsellerDetails] = useState({ name: "", price: "", description: "", image: "", userId: "" })
@@ -26,6 +27,8 @@ export default function Admin() {
                 <div><FileBase type="file" multiple={false} onDone={({ base64 }) => setsellerDetails({ ...sellerDetails, image: base64 })} /></div>
                 <button type="submit">Submit</button>
             </form>
+
+            <SellerProducts />
         </>
     )
 }

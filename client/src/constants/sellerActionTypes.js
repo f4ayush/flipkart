@@ -8,5 +8,6 @@ export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 
 export const ALL_PRODUCTS = 'ALL_PRODUCTS';
+export const SELLER_PRODUCTS = 'SELLER_PRODUCTS';
 export const LOGIN_BUYER = 'LOGIN_BUYER';
 export const SIGNUP_BUYER = 'SIGNUP_BUYER';

@@ -10,3 +10,4 @@ export const logInBuyer = (buyerData) => API.post('/buyer/login', buyerData)
 
 export const addProduct = (sellerData) => API.post('/seller/addProduct', sellerData)
 export const allProducts = () => API.get('/seller/allProducts')
+export const sellerProducts = (id) => API.post('/seller/sellerProducts', id)

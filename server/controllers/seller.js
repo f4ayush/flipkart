@@ -7,9 +7,10 @@ import sellerDescription from '../models/seller.js';
 
 const router = express.Router();
 
-// export const getSellers = async (req, res) => {
+// export const getProducts = async (req, res) => {
 //     try {
 //         const items = await sellerDescription.find();
+//         console.log(items)
 //         res.status(200).json(items);
 //     } catch (error) {
 //         res.status(404).json({ message: error.message });
@@ -62,7 +63,7 @@ export const addProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
     try {
         const sellers = await sellerDescription.find();
-        const products = sellers.filter(seller => seller.products)
+        const products = sellers.map(seller => seller.products)
         res.send(products)
     } catch (error) {
         res.status(500).json({ message: error })

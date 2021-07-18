@@ -3,8 +3,9 @@ import { ALL_PRODUCTS } from '../constants/sellerActionTypes'
 
 export const allProducts = () => async (dispatch) => {
     try {
-        const products = await api.allProducts()
-        const action = { type: ALL_PRODUCTS, products }
+        const { data } = await api.allProducts()
+        const action = { type: ALL_PRODUCTS, products: data }
+        // console.log(products)
         dispatch(action)
     } catch (error) {
         console.log(error)

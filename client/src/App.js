@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Admin from './components/Admin/Admin'
 import Seller from './components/Login/Seller/Seller';
 import Buyer from './components/Login/Buyer/Buyer';
+import Home from './components/Home/Home';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/seller' exact component={Admin} />
         <Route path='/loginSeller' exact component={Seller} />
         <Route path='/login' exact component={Buyer} />
+        <Route path='/' exact component={Home} />
       </Switch>
     </Router>
 
