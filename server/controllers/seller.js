@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { v4 as uuidv4 } from 'uuid';
 
 import sellerDescription from '../models/seller.js';
 
@@ -17,16 +18,29 @@ const router = express.Router();
 //     }
 // }
 
-// export const getSeller = async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//         const item = await sellerDescription.findById(id);
+export const getProducts = async (req, res) => {
+    const { userId } = req.body;
+    console.log(req.body)
+    try {
+        const seller = await sellerDescription.findById(userId);
+        console.log()
+        res.status(200).json(seller.products);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
 
-//         res.status(200).json(item);
-//     } catch (error) {
-//         res.status(404).json({ message: error.message });
-//     }
-// }
+export const deleteProduct = async (req, res) => {
+    const { sellerId, productId } = req.body;
+
+    // if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    console.log(req.body)
+    const seller = await sellerDescription.findById(sellerId);
+    seller.products = seller.products.filter(product => product.key !== productId);
+    await sellerDescription.findByIdAndUpdate(sellerId, seller, { new: true })
+
+    res.json({ message: "Product deleted successfully." });
+}
 
 // export const updatePost = async (req, res) => {
 //     const { id } = req.params;
@@ -49,8 +63,8 @@ export const addProduct = async (req, res) => {
     try {
         const seller = await sellerDescription.findById(userId);
         // console.log(seller)
-        let key = seller.products.length
-        seller.products.push({ key: key + 1, name, price, description, image })
+        // let key = seller.products.length
+        seller.products.push({ key: uuidv4(), name, price, description, image })
 
         await sellerDescription.findByIdAndUpdate(userId, seller, { new: true })
         res.json(seller)
@@ -60,7 +74,7 @@ export const addProduct = async (req, res) => {
 }
 
 
-export const getProducts = async (req, res) => {
+export const getAllProducts = async (req, res) => {
     try {
         const sellers = await sellerDescription.find();
         const products = sellers.map(seller => seller.products)
