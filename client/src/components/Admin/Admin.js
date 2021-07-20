@@ -1,18 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { addProduct } from '../../api/index'
 import { useHistory } from 'react-router-dom'
 import FileBase from 'react-file-base64';
 import SellerProducts from "../Products/SellerProducts";
+import { products } from '../../actions/sellerProducts'
+import { useDispatch } from 'react-redux';
 
 export default function Admin() {
-    const [sellerDetails, setsellerDetails] = useState({ name: "", price: "", description: "", image: "", userId: "" })
+    const [userId, setuserId] = useState(JSON.parse(localStorage.getItem('profile'))?.result._id)
+    const [sellerDetails, setsellerDetails] = useState({ name: "", price: "", description: "", image: "", userId: userId })
     const history = useHistory()
-    const userId = JSON.parse(localStorage.getItem('profile'))?.result._id
+    // const userId = JSON.parse(localStorage.getItem('profile'))?.result._id
+    console.log(userId)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(userId)
+        dispatch(products(userId));
+    }, [dispatch]);
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        setsellerDetails({ ...sellerDetails, userId })
-
+        // setsellerDetails({ ...sellerDetails, userId })
         addProduct(sellerDetails)
         console.log(sellerDetails)
         setsellerDetails({ name: "", price: "", description: "", image: "" })

@@ -11,8 +11,8 @@ export default (products = [], action) => {
         //     return [...products, action.payload];
         // case UPDATE:
         //     return products.map((post) => (post._id === action.payload._id ? action.payload : post));
-        // case DELETE:
-        //     return products.filter((post) => post._id !== action.payload);
+        case DELETE:
+            return products.filter((product) => product.key !== action.key);
         default:
             return products;
     }

@@ -1,19 +1,27 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteProduct } from "../../actions/sellerProducts";
 
 export default function SellerProducts() {
-    const products = useSelector(state => state.sellerProducts[0])
+    const products = useSelector(state => state.sellerProducts)
+    const userId = JSON.parse(localStorage.getItem('profile'))?.result._id
+    const dispatch = useDispatch()
+
+    const editProduct = () => {
+
+    }
     return (
         <div>
             {console.log(products)}
             {
                 products.map(product => {
-                    return <div>
+                    return <div key={product.key}>
                         <p>{product.name}</p>
                         <p>{product.desc}</p>
                         <p>{product.price}</p>
                         <img src={product.image} alt="" />
-                        <button>Buy Now</button>
+                        <button onClick={editProduct}>Edit</button>
+                        <button onClick={() => { dispatch(deleteProduct(userId, product.key)) }}>Delete</button>
                     </div>
                 })
             }
