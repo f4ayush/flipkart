@@ -12,5 +12,6 @@ export const allProducts = () => API.get('/seller/allProducts')
 
 export const addProduct = (sellerData) => API.post('/seller/addProduct', sellerData)
 export const deleteProduct = (productDetails) => API.post('/seller/deleteProduct', productDetails)
+export const editProduct = (productDetails) => API.post('/seller/editProduct', productDetails)
 
 export const sellerProducts = (userId) => API.post('/seller/sellerProducts', { userId })

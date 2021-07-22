@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteProduct } from "../../actions/sellerProducts";
 
-export default function SellerProducts() {
+export default function SellerProducts({ fillForm }) {
     const products = useSelector(state => state.sellerProducts)
     const userId = JSON.parse(localStorage.getItem('profile'))?.result._id
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ export default function SellerProducts() {
                         <p>{product.desc}</p>
                         <p>{product.price}</p>
                         <img src={product.image} alt="" />
-                        <button onClick={editProduct}>Edit</button>
+                        <button onClick={() => fillForm(product.name, product.price, product.description, product.key)}>Edit</button>
                         <button onClick={() => { dispatch(deleteProduct(userId, product.key)) }}>Delete</button>
                     </div>
                 })

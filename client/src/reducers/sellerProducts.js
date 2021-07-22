@@ -6,11 +6,11 @@ export default (products = [], action) => {
         case SELLER_PRODUCTS:
             return action.products;
         // case LIKE:
-        //     return products.map((post) => (post._id === action.payload._id ? action.payload : post));
+        //     return products.map((product) => (product._id === action.payload._id ? action.payload : product));
         // case CREATE:
         //     return [...products, action.payload];
-        // case UPDATE:
-        //     return products.map((post) => (post._id === action.payload._id ? action.payload : post));
+        case UPDATE:
+            return products.map((product) => (product._id === action.payload._id ? action.payload : product));
         case DELETE:
             return products.filter((product) => product.key !== action.key);
         default:

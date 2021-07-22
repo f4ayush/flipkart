@@ -42,18 +42,21 @@ export const deleteProduct = async (req, res) => {
     res.json({ message: "Product deleted successfully." });
 }
 
-// export const updatePost = async (req, res) => {
-//     const { id } = req.params;
-//     const { title, message, creator, selectedFile, tags } = req.body;
+export const editProduct = async (req, res) => {
+    const { name, price, description, key, userId } = req.body
+    const seller = await sellerDescription.findById(userId)
+    seller.products = seller.products.map(product => {
+        if (product.key === key) {
+            console.log(product)
+            product = { ...product, name, price, description }
+            console.log(product)
+        }
+        return product
+    })
+    await sellerDescription.findByIdAndUpdate(userId, seller, { new: true })
+    res.json(seller.products)
+}
 
-//     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-
-//     const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
-
-//     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
-
-//     res.json(updatedPost);
-// }
 
 export const addProduct = async (req, res) => {
     const { name, price, description, userId, image } = req.body;

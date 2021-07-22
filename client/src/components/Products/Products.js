@@ -6,7 +6,7 @@ export default function Products() {
     return (
         <div>
             {console.log(products)}
-            {
+            {products &&
                 products.map(product => {
                     return <div>
                         <p>{product.name}</p>
