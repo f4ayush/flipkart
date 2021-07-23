@@ -7,9 +7,6 @@ export default function SellerProducts({ fillForm }) {
     const userId = JSON.parse(localStorage.getItem('profile'))?.result._id
     const dispatch = useDispatch()
 
-    const editProduct = () => {
-
-    }
     return (
         <div>
             {console.log(products)}

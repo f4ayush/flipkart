@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { addProduct } from '../../api/index'
 import { useHistory } from 'react-router-dom'
 import FileBase from 'react-file-base64';
 import SellerProducts from "../Products/SellerProducts";
-import { editProduct, products } from '../../actions/sellerProducts'
+import { editProduct, products, addProduct } from '../../actions/sellerProducts'
 import { useDispatch } from 'react-redux';
 
 export default function Admin() {
@@ -18,7 +17,7 @@ export default function Admin() {
     useEffect(() => {
         console.log(userId)
         dispatch(products(userId));
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,7 +25,7 @@ export default function Admin() {
         if (isEdit) {
             dispatch(editProduct(product))
         } else {
-            addProduct(product)
+            dispatch(addProduct(product))
             console.log(product)
         }
         setproduct({ name: "", price: "", description: "", image: "", userId })

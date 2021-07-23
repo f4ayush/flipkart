@@ -13,7 +13,7 @@ function Navbar() {
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
 
-        history.push('/seller');
+        history.push('/');
 
         setUser(null);
     };

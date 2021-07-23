@@ -45,16 +45,18 @@ export const deleteProduct = async (req, res) => {
 export const editProduct = async (req, res) => {
     const { name, price, description, key, userId } = req.body
     const seller = await sellerDescription.findById(userId)
+    let image
     seller.products = seller.products.map(product => {
         if (product.key === key) {
             console.log(product)
+            image = product.image
             product = { ...product, name, price, description }
             console.log(product)
         }
         return product
     })
     await sellerDescription.findByIdAndUpdate(userId, seller, { new: true })
-    res.json(seller.products)
+    res.json({ name, price, description, key, image })
 }
 
 
@@ -67,10 +69,11 @@ export const addProduct = async (req, res) => {
         const seller = await sellerDescription.findById(userId);
         // console.log(seller)
         // let key = seller.products.length
-        seller.products.push({ key: uuidv4(), name, price, description, image })
+        let newProduct = { key: uuidv4(), name, price, description, image }
+        seller.products.push(newProduct)
 
         await sellerDescription.findByIdAndUpdate(userId, seller, { new: true })
-        res.json(seller)
+        res.json(newProduct)
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
