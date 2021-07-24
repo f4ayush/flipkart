@@ -8,17 +8,17 @@ export default function SellerProducts({ fillForm }) {
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <div className="product-container">
             {console.log(products)}
             {
                 products.map(product => {
-                    return <div key={product.key}>
-                        <p>{product.name}</p>
-                        <p>{product.desc}</p>
-                        <p>{product.price}</p>
-                        <img src={product.image} alt="" />
-                        <button onClick={() => fillForm(product.name, product.price, product.description, product.key)}>Edit</button>
-                        <button onClick={() => { dispatch(deleteProduct(userId, product.key)) }}>Delete</button>
+                    return <div key={product.key} className="cards">
+                        <p className="product-name">{product.name}</p>
+                        <p className="product-description">{product.description}</p>
+                        <p className="product-price">{product.price}</p>
+                        <img className="product-image" src={product.image} alt="" />
+                        <button className="edit" onClick={() => fillForm(product.name, product.price, product.description, product.key)}>Edit</button>
+                        <button className="delete" onClick={() => { dispatch(deleteProduct(userId, product.key)) }}>Delete</button>
                     </div>
                 })
             }

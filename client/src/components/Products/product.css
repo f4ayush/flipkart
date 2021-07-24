@@ -1,0 +1,21 @@
+.product {
+    position: absolute;
+    margin: auto;
+    padding: 10px;
+    border-radius: 15px;
+    width: 450px;
+    background: whitesmoke;
+    min-height: 500px;
+}
+
+.left, .right {
+    flex: 1;
+}
+
+.left>img {
+    width: 100%;
+}
+
+.product-button{
+    margin-top: 10px;
+}

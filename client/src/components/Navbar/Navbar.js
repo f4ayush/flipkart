@@ -3,6 +3,7 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux'
 import * as actionType from '../../constants/sellerActionTypes';
+import "./navbar.css"
 function Navbar() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
@@ -31,14 +32,14 @@ function Navbar() {
     }, [location]);
 
     return (
-        <div style={{ display: 'flex', justifyContent: "space-around" }}>
-            <Link to="/">E-Commerce</Link>
+        <div className="nav-container" style={{ display: 'flex', justifyContent: "space-around" }}>
+            <Link to="/"><h2 className="logo">E-Commerce</h2></Link>
             <div className="button-container">
-                {user ? <button onClick={logout}>Log Out</button>
+                {user ? <button className="logout-button" onClick={logout}>Log Out</button>
                     :
                     <div>
-                        <Link to="/login" ><button>LogIn</button></Link>
-                        <Link to="/loginSeller" ><button>Seller</button></Link>
+                        <Link className="login-link" to="/login" ><button>LogIn</button></Link>
+                        <Link className="login-link" to="/loginSeller" ><button>Seller</button></Link>
                     </div>
                 }
 

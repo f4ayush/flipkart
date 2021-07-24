@@ -1,0 +1,24 @@
+.nav-container {
+    background: #ee6c4d;
+}
+
+h2.logo {
+    color: white;
+    font-style: normal;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+
+a.login-link {
+    margin: 0 1em;
+}
+.login-link > button, .logout-button {
+    border: none;
+    padding: 5px 20px;
+    background: #e0fbfc;
+    border-radius: 8px;
+}

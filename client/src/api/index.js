@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+const API = axios.create({ baseURL: 'https://ayushraj-e-commerce.herokuapp.com' })
 
 export const createSeller = (sellerData) => API.post('/seller/signUp', sellerData)
 export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)
