@@ -8,22 +8,10 @@ import sellerDescription from '../models/seller.js';
 
 const router = express.Router();
 
-// export const getProducts = async (req, res) => {
-//     try {
-//         const items = await sellerDescription.find();
-//         console.log(items)
-//         res.status(200).json(items);
-//     } catch (error) {
-//         res.status(404).json({ message: error.message });
-//     }
-// }
-
 export const getProducts = async (req, res) => {
     const { userId } = req.body;
-    console.log(req.body)
     try {
         const seller = await sellerDescription.findById(userId);
-        console.log()
         res.status(200).json(seller.products);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -32,9 +20,6 @@ export const getProducts = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
     const { sellerId, productId } = req.body;
-
-    // if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    console.log(req.body)
     const seller = await sellerDescription.findById(sellerId);
     seller.products = seller.products.filter(product => product.key !== productId);
     await sellerDescription.findByIdAndUpdate(sellerId, seller, { new: true })
@@ -48,10 +33,8 @@ export const editProduct = async (req, res) => {
     let image
     seller.products = seller.products.map(product => {
         if (product.key === key) {
-            console.log(product)
             image = product.image
             product = { ...product, name, price, description }
-            console.log(product)
         }
         return product
     })
@@ -62,16 +45,10 @@ export const editProduct = async (req, res) => {
 
 export const addProduct = async (req, res) => {
     const { name, price, description, userId, image } = req.body;
-    console.log(req.body)
-    // if (!mongoose.Types.ObjectId.isValid(userId)) return res.status(404).send(`No user with id: ${userId}`);
-
     try {
         const seller = await sellerDescription.findById(userId);
-        // console.log(seller)
-        // let key = seller.products.length
         let newProduct = { key: uuidv4(), name, price, description, image }
         seller.products.push(newProduct)
-
         await sellerDescription.findByIdAndUpdate(userId, seller, { new: true })
         res.json(newProduct)
     } catch (error) {

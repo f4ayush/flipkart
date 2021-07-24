@@ -3,10 +3,8 @@ import { CREATE, DELETE, SELLER_PRODUCTS, UPDATE } from '../constants/sellerActi
 
 export const products = (id) => async (dispatch) => {
     try {
-        console.log(id)
         const { data } = await api.sellerProducts(id)
         const action = { type: SELLER_PRODUCTS, products: data }
-        // console.log(products)
         dispatch(action)
     } catch (error) {
         console.log(error)

@@ -14,10 +14,8 @@ export default function Products() {
         setshowProduct(true)
         window.scrollTo(0, 0)
     }
-    console.log(login)
     return (
         <div className="product-container">
-            {/* {console.log(products)} */}
             {products &&
                 products.map(product => {
                     return <div key={uuidv4()} className="cards">

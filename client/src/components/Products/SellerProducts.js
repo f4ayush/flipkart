@@ -9,7 +9,6 @@ export default function SellerProducts({ fillForm }) {
 
     return (
         <div className="product-container">
-            {console.log(products)}
             {
                 products.map(product => {
                     return <div key={product.key} className="cards">
