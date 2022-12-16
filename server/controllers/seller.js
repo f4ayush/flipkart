@@ -60,7 +60,8 @@ export const addProduct = async (req, res) => {
 export const getAllProducts = async (req, res) => {
     try {
         const sellers = await sellerDescription.find();
-        const products = sellers.map(seller => seller.products)
+        let products = sellers.map(seller => seller.products)
+        products = products.flat();
         res.send(products)
     } catch (error) {
         res.status(500).json({ message: error })

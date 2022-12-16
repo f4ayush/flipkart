@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'https://ayushraj-e-commerce.herokuapp.com' })
+const API = axios.create({ baseURL: 'https://flipkart-5zfu.vercel.app' })
 
 export const createSeller = (sellerData) => API.post('/seller/signUp', sellerData)
 export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)
