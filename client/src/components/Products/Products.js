@@ -5,7 +5,7 @@ import Product from './Product';
 import "./products.css"
 
 export default function Products() {
-    const products = useSelector(state => state.allProducts[0])
+    const products = useSelector(state => state.allProducts)
     const login = localStorage.getItem('profile')
     const [buyProduct, setbuyProduct] = useState({})
     const [showProduct, setshowProduct] = useState(false)
