@@ -61,7 +61,7 @@ export const getAllProducts = async (req, res) => {
     try {
         const sellers = await sellerDescription.find();
         let products = sellers.map(seller => seller.products)
-        products = products.flat();
+        // products = products.flat();
         res.send(products)
     } catch (error) {
         res.status(500).json({ message: error })
