@@ -1,33 +1,150 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useHistory, useLocation } from 'react-router-dom'
 import { loginBuyer, signUpBuyer } from '../../../actions/login'
 import { useDispatch } from 'react-redux'
 import "../login.css"
 
-function Buyer() {
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+const theme = createTheme();
+
+export default function SignIn() {
     const [buyerDetails, setbuyerDetails] = useState({ name: "", email: "", password: "" })
     const [isSignup, setisSignup] = useState(false)
     const dispatch = useDispatch()
-    const handleSignup = () => {
-        setisSignup(!isSignup)
-    }
+    const location = useLocation()
+    
+    useEffect(() => {
+        if(location.pathname.includes("signup")){
+            setisSignup(true)
+        }else{
+            setisSignup(false)
+        }
+
+    }, [location])
+    
     const history = useHistory()
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        isSignup ? dispatch(signUpBuyer(buyerDetails, history)) : dispatch(loginBuyer(buyerDetails, history))
-    }
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const email=data.get('email')
+        const password=data.get('password')
+        const name=data.get('email')
+      console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+        name: data.get('email')
+        
+      });
+      isSignup ? dispatch(signUpBuyer({email, name, password}, history)) : dispatch(loginBuyer({email, password}, history))
+    
+    };
+  
     return (
-        <div className="form-container">
-            <form className="login-form" onSubmit={handleSubmit}>
-                {isSignup && <input type="text" name="name" placeholder="Name" onChange={(e) => setbuyerDetails({ ...buyerDetails, name: e.target.value })} />}
-                <input type="text" name="email" placeholder="Email" onChange={(e) => setbuyerDetails({ ...buyerDetails, email: e.target.value })} />
-                <input type="text" name="password" placeholder="Password" onChange={(e) => setbuyerDetails({ ...buyerDetails, password: e.target.value })} />
-                <button type="submit">{isSignup ? "Register" : "Log In"}</button>
-            </form>
-            {isSignup ? <p>Already registered? <span onClick={handleSignup}>Log in</span></p> : <p>New here? <span onClick={handleSignup}>Register Now</span></p>}
-
-        </div>
-    )
-}
-
-export default Buyer
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+                { isSignup ? "Sign in" : "Sign up" }
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            {
+                isSignup && 
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Full Name"
+                    name="name"
+                    autoComplete="name"
+                    autoFocus
+                />
+              }
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="signup" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+          <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Container>
+      </ThemeProvider>
+    );
+  }
+  
