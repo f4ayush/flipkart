@@ -17,8 +17,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 export default function Products() {
     const products = useSelector(state => state.allProducts)
@@ -74,7 +73,7 @@ export default function Products() {
         <div className="product-container">
         {showProduct && <Product setshowProduct={setshowProduct} product={buyProduct} />}
 
-            <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
             {products.map((product) => (
               <Grid item key={uuidv4()} xs={12} sm={6} md={4}>

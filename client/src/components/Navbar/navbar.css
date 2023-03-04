@@ -1,4 +1,21 @@
 
 .login-link{
-    color: #fff;
+    color: black;
+    font-weight: bold;
+}
+
+.header {
+    background: #fff none repeat scroll 0 0 !important;
+    transition: all .5s ease 0s !important;
+    color: black;
+}
+
+
+.header.sticky {
+    background: #eee none repeat scroll 0 0;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    position: fixed;
+    width: 100%;
+    z-index: 9999999;
+    color: black;
 }

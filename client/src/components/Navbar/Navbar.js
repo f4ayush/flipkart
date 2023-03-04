@@ -12,12 +12,12 @@ import { useDispatch } from 'react-redux'
 import * as actionType from '../../constants/sellerActionTypes';
 import "./navbar.css"
 import { color } from '@mui/system';
-function Navbar() {
+function Navbar({show}) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
-
+    const [sticky, setSticky] = useState(false)
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
@@ -39,10 +39,20 @@ function Navbar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
+    // useEffect(() => {
+    //   if(window.scrollTop){
+    //     setSticky(true);
+    //   }else{
+    //     setSticky(false);
+    //   }
+    //   console.log(window)
+    // }, [window.screenX])
+    
+
     return (
         <div className="nav-container" style={{ display: 'flex', justifyContent: "space-around" }}>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+                <AppBar position="sticky" id='sticky-menu' className={show? "header" : "header sticky"}>
                     <Toolbar>
                     <IconButton
                         size="large"
@@ -51,10 +61,10 @@ function Navbar() {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon />
+                        <MenuIcon sx={{color:"black"}}/>
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    <Link to="/">E-Commerce</Link>
+                    <Link className="login-link" to="/">E-Commerce</Link>
                     </Typography>
                         {
                             user ? <Button sx={{color:"white"}} onClick={logout}>Log Out</Button>
