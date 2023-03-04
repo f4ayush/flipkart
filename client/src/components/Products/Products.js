@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import Product from './Product';
 import axios from 'axios';
-// import "./products.css"
+import "./products.css"
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
@@ -74,18 +74,21 @@ export default function Products() {
         {showProduct && <Product setshowProduct={setshowProduct} product={buyProduct} />}
 
         <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
+          <Grid container spacing={4} sx={{justifyContent:"center"}}>
             {products.map((product) => (
-              <Grid item key={uuidv4()} xs={12} sm={6} md={4}>
+              <Grid item key={uuidv4()} xs={12} sm={8} md={6} lg={4} >
                 <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                className="single-product"
+                  sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius:0 }}
                 >
                   <CardMedia
                     component="img"
                     sx={{
                       // 16:9
-                    //   pt: '56.25%',
+                      aspectRatio: "16/9"
+
                     }}
+                    className="product-img"
                     image={product.image}
                     alt="product image"
                   />
@@ -93,9 +96,9 @@ export default function Products() {
                     <Typography gutterBottom variant="h5" component="h2">
                         {product.name}
                     </Typography>
-                    <Typography>
+                    {/* <Typography>
                         {product.description}
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                   <CardActions>
                     <Button size="small">{product.price}</Button>
@@ -104,6 +107,7 @@ export default function Products() {
                 </Card>
               </Grid>
             ))}
+           
           </Grid>
         </Container>
         </div>

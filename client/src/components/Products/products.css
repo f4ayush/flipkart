@@ -1,4 +1,4 @@
-.product-container {
+/* .product-container {
     margin-top: 2em;
     display: flex;
     flex-wrap: wrap;
@@ -48,10 +48,45 @@ button.buy-button {
 
 .edit {
     margin-right: 5px;
-    /* background-color: #e0fbfc; */
+    
 }
 
 .delete {
     background: #e63946;
     color: white;
+} */
+
+.single-product {
+    transition: all .5s ease 0s;
 }
+.single-product:hover {
+    box-shadow: 1px 25px 54px rgb(0 0 0 / 12%);
+}
+
+.product-img {
+    overflow: hidden;
+    position: relative;
+}
+
+.pro-label {
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    z-index: 2;
+    background: #c8a165 none repeat scroll 0 0;
+    border-radius: 5px;
+    color: #fff;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    text-transform: capitalize;
+}
+
+.product-img img {
+    width: 100%;
+}
+
+img {
+    vertical-align: middle;
+}
+

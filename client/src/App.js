@@ -11,7 +11,7 @@ import Home from './components/Home/Home';
 import { useScrollPosition } from './hooks/useScrollPosition';
 const ScrollToTop = withRouter(({ children, location: { pathname } }) => {
   useLayoutEffect(() => {
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
   }, [pathname])
 
   return children || null
@@ -24,14 +24,14 @@ function App() {
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y
+      const isShow = currPos.y > window.scrollY || ( currPos.y == 0 && window.scrollY == 0)
       if (isShow !== hideOnScroll) setHideOnScroll(isShow)
     },
     [hideOnScroll]
   )
   return (
     <Router>
-      <ScrollToTop>
+      {/* <ScrollToTop> */}
       <Navbar show={hideOnScroll}/>
       <Switch>
         <Route path='/seller' exact component={Admin} />
@@ -40,7 +40,7 @@ function App() {
         <Route path='/signup' exact component={Buyer} />
         <Route path='/' exact component={Home} />
       </Switch>
-      </ScrollToTop>
+      {/* </ScrollToTop> */}
     </Router>
 
   );
