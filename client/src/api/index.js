@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({ baseURL: 'https://flipkart-5zfu.vercel.app' })
+/* const API = axios.create({ baseURL: 'http://localhost:8000' }) */
 
 export const createSeller = (sellerData) => API.post('/seller/signUp', sellerData)
 export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)

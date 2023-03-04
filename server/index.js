@@ -6,7 +6,9 @@ import cors from 'cors'
 import home from './routes/home.js'
 import buyerRoutes from './routes/buyer.js'
 import sellerRoutes from './routes/seller.js'
-
+import dotenv from "dotenv"
+import paymentRoutes from './routes/payment.js'
+dotenv.config()
 const app = express()
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
@@ -16,6 +18,7 @@ app.use(cors())
 app.use('/', home)
 app.use('/buyer', buyerRoutes)
 app.use('/seller', sellerRoutes)
+app.use("/api/payment/", paymentRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.2mj7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
