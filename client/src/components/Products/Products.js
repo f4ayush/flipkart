@@ -31,15 +31,15 @@ export default function Products() {
         window.scrollTo(0, 0)
     }
     
-    const initPayment = (data) => {
+    const initPayment = (data, product) => {
 		const options = {
 			key: "rzp_test_L6r3iUMhxSgpSE",
             key_secret: "LKGT6Ee7dpj00Ck3nu4E1vNq",
 			amount: data.amount,
 			currency: data.currency,
-			name: "book.name",
+			name: product.name,
 			description: "Test Transaction",
-			image: "book.img",
+			image: product.img,
 			order_id: data.id,
 			handler: async (response) => {
 				try {
@@ -58,12 +58,12 @@ export default function Products() {
 		rzp1.open();
 	};
 
-    const handlePayment = async () => {
+    const handlePayment = async (product) => {
 		try {
 			const orderUrl = "https://flipkart-5zfu.vercel.app/api/payment/orders";
-			const { data } = await axios.post(orderUrl, { amount: 520 });
+			const { data } = await axios.post(orderUrl, { amount: product.price });
 			console.log(data);
-			initPayment(data.data);
+			initPayment(data.data, product);
 		} catch (error) {
 			console.log(error);
 		}
@@ -100,7 +100,7 @@ export default function Products() {
                   </CardContent>
                   <CardActions>
                     <Button size="small">{product.price}</Button>
-                    {login && <Button size="small" onClick={() => handlePayment()}>Buy Now</Button>}
+                    {login && <Button size="small" onClick={() => handlePayment(product)}>Buy Now</Button>}
                   </CardActions>
                 </Card>
               </Grid>
