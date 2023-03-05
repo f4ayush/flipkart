@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { products } from "../../actions/sellerProducts";
 import CartIcon from "../Icons/CartIcon";
 import QuantityButton from "./QuantityButton";
 
 const Description = ({ onQuant, onAdd, onRemove, onSetOrderedQuant }) => {
-console.log(useParams())
   return (
     <section className="description">
       <p className="pre">sneaker company</p>

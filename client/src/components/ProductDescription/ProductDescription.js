@@ -26,11 +26,13 @@ export default function ProductDescription() {
   const product = useSelector(state => state.product);
   const dispatch = useDispatch()
   const productId = useParams().productId
+  
   useEffect(() => {
     if(productId){
+      console.log(productId)
         dispatch(getProduct(productId));
     }
-  }, [])
+  }, [dispatch])
   
   return (
     <section className="core">

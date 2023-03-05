@@ -86,4 +86,18 @@ export const createBuyer = async (req, res) => {
 };
 
 
+export const getProduct = async (req, res) => {
+    try {
+        const {productId} = req.body;
+        console.log(productId)
+        const items = await buyerDescription.find();
+
+        res.status(200).json(items);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+
+
 export default router;

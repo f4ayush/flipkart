@@ -22,6 +22,7 @@ app.use("/api/payment/", paymentRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.2mj7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
+
 const PORT = process.env.PORT || 5000
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'https://flipkart-5zfu.vercel.app' })
-/* const API = axios.create({ baseURL: 'http://localhost:8000' }) */
+// const API = axios.create({ baseURL: 'https://flipkart-5zfu.vercel.app' })
+const API = axios.create({ baseURL: 'http://localhost:8000' })
 
 export const createSeller = (sellerData) => API.post('/seller/signUp', sellerData)
 export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)
@@ -11,7 +11,7 @@ export const logInBuyer = (buyerData) => API.post('/buyer/login', buyerData)
 
 export const allProducts = () => API.get('/seller/allProducts')
 
-export const getProduct = (key) => API.get('/buyer/getProduct', key)
+export const getProduct = (productId) => API.post('/buyer/getProduct', productId)
 export const addProduct = (sellerData) => API.post('/seller/addProduct', sellerData)
 export const deleteProduct = (productDetails) => API.post('/seller/deleteProduct', productDetails)
 export const editProduct = (productDetails) => API.post('/seller/editProduct', productDetails)
