@@ -20,8 +20,8 @@ app.use('/buyer', buyerRoutes)
 app.use('/seller', sellerRoutes)
 app.use("/api/payment/", paymentRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.2mj7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-
+/* const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.2mj7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' */
+const CONNECTION_URL = "mongodb+srv://ayush:ayush@cluster0.y0mjqdd.mongodb.net/?retryWrites=true&w=majority"
 
 const PORT = process.env.PORT || 5000
 
