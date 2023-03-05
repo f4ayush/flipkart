@@ -74,7 +74,7 @@ export default function Products() {
         {showProduct && <Product setshowProduct={setshowProduct} product={buyProduct} />}
 
         <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4} sx={{justifyContent:"center"}}>
+          <Grid container spacing={4} justifyContent={{sm:"center", md:"flex-start"}}>
             {products.map((product) => (
               <Grid item key={uuidv4()} xs={12} sm={8} md={6} lg={4} >
                 <Card
@@ -93,17 +93,14 @@ export default function Products() {
                     alt="product image"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {product.name}
+                    <Typography className='post-title' gutterBottom variant="h5" component="h2">
+                      {product.name}
                     </Typography>
-                    {/* <Typography>
-                        {product.description}
-                    </Typography> */}
+                    <Typography className='pro-price' component="span">
+                        &#8377; {product.price}
+                    </Typography>
+                    {login && <Button sx={{float:"right", color:'black', fontWeight: "700px"}} size="small" onClick={() => handlePayment(product)}>Buy Now</Button>}
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">{product.price}</Button>
-                    {login && <Button size="small" onClick={() => handlePayment(product)}>Buy Now</Button>}
-                  </CardActions>
                 </Card>
               </Grid>
             ))}

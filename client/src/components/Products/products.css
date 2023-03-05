@@ -90,3 +90,29 @@ img {
     vertical-align: middle;
 }
 
+
+
+.post-title {
+    font-size: 16px !important;
+    line-height: 18px !important;
+    text-transform: uppercase;
+    font-family: bree serif !important;
+    margin-bottom: 5px !important;
+}
+
+.post-title {
+    text-decoration: none;
+    color: #434343;
+}
+
+.post-title:hover {
+    color: #c8a165;
+    text-decoration: none;
+}
+
+.pro-price {
+    color: #c87065;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+}
