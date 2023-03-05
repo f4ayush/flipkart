@@ -5,19 +5,13 @@ import Product from './Product';
 import axios from 'axios';
 import "./products.css"
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
+import {Link} from "react-router-dom"
 
 export default function Products() {
     const products = useSelector(state => state.allProducts)
@@ -76,11 +70,12 @@ export default function Products() {
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4} justifyContent={{sm:"center", md:"flex-start"}}>
             {products.map((product) => (
-              <Grid item key={uuidv4()} xs={12} sm={8} md={6} lg={4} >
+              <Grid item key={product.key} xs={12} sm={8} md={6} lg={4} >
                 <Card
                 className="single-product"
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius:0 }}
                 >
+                  <Link to={"product-description/"+product.key}>
                   <CardMedia
                     component="img"
                     sx={{
@@ -93,6 +88,7 @@ export default function Products() {
                     alt="product image"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
+                    
                     <Typography className='post-title' gutterBottom variant="h5" component="h2">
                       {product.name}
                     </Typography>
@@ -101,6 +97,7 @@ export default function Products() {
                     </Typography>
                     {login && <Button sx={{float:"right", color:'black', fontWeight: "700px"}} size="small" onClick={() => handlePayment(product)}>Buy Now</Button>}
                   </CardContent>
+                  </Link>
                 </Card>
               </Grid>
             ))}

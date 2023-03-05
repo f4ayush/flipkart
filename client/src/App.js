@@ -9,6 +9,8 @@ import Seller from './components/Login/Seller/Seller';
 import Buyer from './components/Login/Buyer/Buyer';
 import Home from './components/Home/Home';
 import { useScrollPosition } from './hooks/useScrollPosition';
+import ProductDescription from './components/ProductDescription/ProductDescription';
+import Product from './components/Products/Product';
 const ScrollToTop = withRouter(({ children, location: { pathname } }) => {
   useLayoutEffect(() => {
     // window.scrollTo(0, 0)
@@ -38,6 +40,7 @@ function App() {
         <Route path='/loginSeller' exact component={Seller} />
         <Route path='/login' exact component={Buyer} />
         <Route path='/signup' exact component={Buyer} />
+        <Route path="/product-description/:productId" component={ProductDescription}/>
         <Route path='/' exact component={Home} />
       </Switch>
       {/* </ScrollToTop> */}
