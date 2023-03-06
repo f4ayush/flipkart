@@ -9,10 +9,10 @@ export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)
 export const createBuyer = (buyerData) => API.post('/buyer/signUp', buyerData)
 export const logInBuyer = (buyerData) => API.post('/buyer/login', buyerData)
 
-export const allProducts = () => API.get('/seller/allProducts')
+export const allProducts = () => API.get('/products')
 
 export const getProduct = (productId) => API.post('/buyer/getProduct', productId)
-export const addProduct = (sellerData) => API.post('/seller/addProduct', sellerData)
+export const addProduct = (sellerData) => API.post('/products', sellerData)
 export const deleteProduct = (productDetails) => API.post('/seller/deleteProduct', productDetails)
 export const editProduct = (productDetails) => API.post('/seller/editProduct', productDetails)
 

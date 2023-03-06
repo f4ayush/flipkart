@@ -80,7 +80,8 @@ export default function Products() {
                     component="img"
                     sx={{
                       // 16:9
-                      aspectRatio: "16/9"
+                      // aspectRatio: "16/9"
+                      objectFit:"contain"
 
                     }}
                     className="product-img"

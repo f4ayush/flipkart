@@ -24,13 +24,14 @@ export default function Admin() {
         } else {
             dispatch(addProduct(product))
         }
-        setproduct({ name: "", price: "", description: "", image: "", userId })
+        // setproduct({ name: "", price: "", description: "", image: "", userId })
     }
 
     const fillForm = (name, price, description, key) => {
         setproduct({ ...product, name, price, description, key })
         setisEdit(true)
         window.scrollTo(0, 0)
+     
     }
 
     const reset = () => {
@@ -43,9 +44,12 @@ export default function Admin() {
                     <input type="text" name="name" value={product.name} placeholder="Item name" onChange={(e) => setproduct({ ...product, name: e.target.value })} />
                     <input type="text" name="price" value={product.price} placeholder="Item price" onChange={(e) => setproduct({ ...product, price: e.target.value })} />
                     <input type="text" name="description" value={product.description} placeholder="Item description" onChange={(e) => setproduct({ ...product, description: e.target.value })} />
+                    <input type="text" name="category" value={product.category} placeholder="Item category" onChange={(e) => setproduct({ ...product, category: e.target.value })} />
+                    <input type="text" name="quantity" value={product.quantity} placeholder="Item quantity" onChange={(e) => setproduct({ ...product, quantity: e.target.value })} />
+                    <input type="text" name="image" value={product.image} placeholder="Item image" onChange={(e) => setproduct({ ...product, image: e.target.value })} />
                 </div>
                 <div className="lower">
-                    <FileBase type="file" multiple={false} onDone={({ base64 }) => setproduct({ ...product, image: base64 })} />
+                    {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setproduct({ ...product, image: base64 })} /> */}
                     <button type="submit">Submit</button>
                     <button onClick={reset} type="reset">Cancel</button>
                 </div>

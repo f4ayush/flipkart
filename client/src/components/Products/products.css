@@ -60,12 +60,13 @@ button.buy-button {
     transition: all .5s ease 0s;
 }
 .single-product:hover {
-    box-shadow: 1px 25px 54px rgb(0 0 0 / 12%);
+    box-shadow: 1px 25px 54px rgb(0 0 0 / 12%) !important;
 }
 
 .product-img {
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
+    height: 300px;
 }
 
 .pro-label {
@@ -83,12 +84,12 @@ button.buy-button {
 }
 
 .product-img img {
-    width: 100%;
+    object-fit: contain !important;
 }
 
-img {
+/* img {
     vertical-align: middle;
-}
+} */
 
 
 
@@ -98,6 +99,10 @@ img {
     text-transform: uppercase;
     font-family: bree serif !important;
     margin-bottom: 5px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 .post-title {
