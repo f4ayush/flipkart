@@ -37,7 +37,7 @@ const Gallery = ({product}) => {
   useEffect(() => {
     setCurrentPassedImage(currentImage);
   }, [currentImage]);
-  console.log(product)
+  
   return (
     <section className="gallery-holder hide-in-mobile">
       <section className="gallery">

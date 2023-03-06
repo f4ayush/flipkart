@@ -39,20 +39,12 @@ function Navbar({show}) {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
-    // useEffect(() => {
-    //   if(window.scrollTop){
-    //     setSticky(true);
-    //   }else{
-    //     setSticky(false);
-    //   }
-    //   console.log(window)
-    // }, [window.screenX])
-    
+  
 
     return (
         <div className="nav-container" style={{ display: 'flex', justifyContent: "space-around" }}>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="sticky" id='sticky-menu' className={show? "header" : "header sticky"}>
+                <AppBar position={show? "static" : "absolute"} id='sticky-menu' className={show? "header" : "header sticky"}>   
                     <Toolbar>
                     <IconButton
                         size="large"
