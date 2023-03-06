@@ -34,6 +34,7 @@ export default function ProductDescription() {
     }
   }, [dispatch])
   
+  
   return (
     <section className="core">
           <Gallery product={product} />

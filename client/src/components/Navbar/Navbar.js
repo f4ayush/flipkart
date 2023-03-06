@@ -44,7 +44,7 @@ function Navbar({show}) {
     return (
         <div className="nav-container" style={{ display: 'flex', justifyContent: "space-around" }}>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position={show? "static" : "absolute"} id='sticky-menu' className={show? "header" : "header sticky"}>   
+                <AppBar position="sticky" id='sticky-menu' className={show? "header" : "header sticky"}>   
                     <Toolbar>
                     <IconButton
                         size="large"
@@ -53,7 +53,7 @@ function Navbar({show}) {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon sx={{color:"black"}}/>
+                    <MenuIcon sx={{color:"black"}}/>
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     <Link className="login-link" to="/">E-Commerce</Link>
