@@ -5,6 +5,7 @@ import cors from 'cors'
 
 import home from './routes/home.js'
 import buyerRoutes from './routes/buyer.js'
+import routes from './routes/index.js'
 import sellerRoutes from './routes/seller.js'
 import dotenv from "dotenv"
 import paymentRoutes from './routes/payment.js'
@@ -15,10 +16,14 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
-app.use('/', home)
-app.use('/buyer', buyerRoutes)
-app.use('/seller', sellerRoutes)
-app.use("/api/payment/", paymentRoutes);
+// app.use('/', home)
+// app.use('/buyer', buyerRoutes)
+// app.use('/seller', sellerRoutes)
+
+// app.use("/api/payment/", paymentRoutes);
+// use express router
+app.use('/', routes);
+
 
 /* const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.2mj7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' */
 const CONNECTION_URL = "mongodb+srv://ayush:ayush@cluster0.y0mjqdd.mongodb.net/?retryWrites=true&w=majority"

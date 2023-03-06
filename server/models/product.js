@@ -38,3 +38,10 @@ const Product = mongoose.model('Product', productSchema);
 
 
 export default Product
+
+
+/* image: {
+    data: Buffer, 
+    contentType: String,
+    required: true
+  } */
