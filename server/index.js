@@ -8,7 +8,7 @@ import buyerRoutes from './routes/buyer.js'
 import routes from './routes/index.js'
 import sellerRoutes from './routes/seller.js'
 import dotenv from "dotenv"
-import paymentRoutes from './routes/payment.js'
+// import paymentRoutes from './routes/payment.js'
 dotenv.config()
 const app = express()
 
