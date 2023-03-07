@@ -1,6 +1,6 @@
 import * as api from '../api/index'
 import axios from 'axios';
-import { GET_PRODUCT } from '../constants/sellerActionTypes'
+import { GET_PRODUCT, MAKE_PAYMENT } from '../constants/sellerActionTypes'
 
 export const getProduct = (productId) => async (dispatch) => {
     try {
@@ -41,12 +41,14 @@ const initPayment = (data, product) => {
 };
 
 
-export const buyProduct = async (product) => {
+export const buyProduct =(product)=> async (dispatch) => {
     try {
         const orderUrl = "http://localhost:8000/api/payment/orders";
         const { data } = await axios.post(orderUrl, { amount: product.price });
         console.log(data);
         initPayment(data.data, product);
+        const action = { type: MAKE_PAYMENT, product: data }
+        dispatch(action)
     } catch (error) {
         console.log(error);
     }

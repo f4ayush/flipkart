@@ -52,15 +52,11 @@ export default function SignIn() {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const email=data.get('email')
-        const password=data.get('password')
-        const name=data.get('email')
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        name: data.get('email')
-        
-      });
-      isSignup ? dispatch(signUpBuyer({email, name, password}, history)) : dispatch(loginBuyer({email, password}, history))
+      const password=data.get('password')
+      const firstName=data.get('firstName')
+      const lastName=data.get('lastName')
+      
+      isSignup ? dispatch(signUpBuyer({email, lastName, firstName, password}, history)) : dispatch(loginBuyer({email, password}, history))
     
     };
   
@@ -85,16 +81,29 @@ export default function SignIn() {
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             {
                 isSignup && 
-                <TextField
+                <>
+                  <TextField
                     margin="normal"
                     required
                     fullWidth
-                    id="name"
-                    label="Full Name"
-                    name="name"
+                    id="firstName"
+                    label="First Name"
+                    name="firstName"
                     autoComplete="name"
                     autoFocus
-                />
+                  />
+                  <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="firstName"
+                      label="Last Name"
+                      name="firstName"
+                      autoComplete="name"
+                      autoFocus
+                  />
+                </>
+              
               }
               <TextField
                 margin="normal"
