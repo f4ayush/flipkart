@@ -20,12 +20,12 @@ const initPayment = (data, product) => {
         amount: data.amount,
         currency: data.currency,
         name: product.name,
-        description: "Test Transaction",
+        description: product.description.substring(0,252),
         image: product.img,
         order_id: data.id,
         handler: async (response) => {
             try {
-                const verifyUrl = "http://localhost:8000/api/payment/verify";
+                const verifyUrl = "http://localhost:8000/orders/verify";
                 const { data } = await axios.post(verifyUrl, response);
                 console.log(data);
             } catch (error) {
@@ -43,7 +43,7 @@ const initPayment = (data, product) => {
 
 export const buyProduct =(product)=> async (dispatch) => {
     try {
-        const orderUrl = "http://localhost:8000/api/payment/orders";
+        const orderUrl = "http://localhost:8000/orders/orders";
         const { data } = await axios.post(orderUrl, { amount: product.price });
         console.log(data);
         initPayment(data.data, product);

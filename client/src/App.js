@@ -39,7 +39,7 @@ function App() {
         <Route path='/seller' exact component={Admin} />
         <Route path='/loginSeller' exact component={Seller} />
         <Route path='/login' exact component={Buyer} />
-        <Route path='/signup' exact component={Buyer} />
+        <Route path='/sign-up' exact component={Buyer} />
         <Route path="/product-description/:productId" component={ProductDescription}/>
         <Route path='/' exact component={Home} />
       </Switch>

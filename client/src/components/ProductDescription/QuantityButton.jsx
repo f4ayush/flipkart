@@ -5,7 +5,7 @@ import minus from "../../Pictures/icon-minus.svg";
 const QuantityButton = ({ onQuant, onRemove, onAdd }) => {
   return (
     <div className="amount">
-      <button className="minus" onClick={onRemove} disabled={onQuant === 0}>
+      <button className="minus" onClick={onRemove} disabled={onQuant === 1}>
         <img src={minus} alt="icon-minus" />
       </button>
       <p>{onQuant}</p>

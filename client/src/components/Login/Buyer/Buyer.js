@@ -22,7 +22,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Ayush
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -39,7 +39,7 @@ export default function SignIn() {
     const location = useLocation()
     
     useEffect(() => {
-        if(location.pathname.includes("signup")){
+        if(location.pathname.includes("sign-up")){
             setisSignup(true)
         }else{
             setisSignup(false)
@@ -76,7 +76,7 @@ export default function SignIn() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-                { isSignup ? "Sign in" : "Sign up" }
+                { isSignup ? "Sign Up" : "Login" }
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             {
@@ -96,9 +96,9 @@ export default function SignIn() {
                       margin="normal"
                       required
                       fullWidth
-                      id="firstName"
+                      id="lastName"
                       label="Last Name"
-                      name="firstName"
+                      name="lastName"
                       autoComplete="name"
                       autoFocus
                   />
@@ -137,18 +137,21 @@ export default function SignIn() {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
+              {
+                !isSignup && 
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="signup" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Link href="signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
+              }
             </Box>
           </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />
