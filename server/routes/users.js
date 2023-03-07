@@ -3,8 +3,8 @@ import { login, signup } from '../controllers/users.js'
 
 const router = express.Router();
 
-router.get('/login', login)
-router.get('/sign-up', signup)
+router.post('/login', login)
+router.post('/sign-up', signup)
 
 
 export default router;
