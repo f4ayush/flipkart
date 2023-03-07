@@ -14,3 +14,5 @@ export const LOGIN_BUYER = 'LOGIN_BUYER';
 export const SIGNUP_BUYER = 'SIGNUP_BUYER';
 
 export const MAKE_PAYMENT = 'MAKE_PAYMENT';
+
+export const USER = 'USER';

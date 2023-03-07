@@ -37,6 +37,7 @@ export default function SignIn() {
     const [isSignup, setisSignup] = useState(false)
     const dispatch = useDispatch()
     const location = useLocation()
+    const history = useHistory()
     
     useEffect(() => {
         if(location.pathname.includes("sign-up")){
@@ -44,10 +45,10 @@ export default function SignIn() {
         }else{
             setisSignup(false)
         }
-
+        
     }, [location])
     
-    const history = useHistory()
+    
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);

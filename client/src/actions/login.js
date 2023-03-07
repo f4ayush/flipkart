@@ -18,7 +18,7 @@ export const loginBuyer = (formData, history) => async (dispatch) => {
         const { data } = await api.logInBuyer(formData)
         const action = { type: LOGIN_BUYER, data }
         dispatch(action)
-        history.push('/')
+        history.goBack()
     } catch (error) {
         console.log(error)
     }

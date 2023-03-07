@@ -2,16 +2,26 @@ import React from "react";
 import CartIcon from "../Icons/CartIcon";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import QuantityButton from "./QuantityButton";
-
-import { useDispatch } from 'react-redux'
+import decode from 'jwt-decode';
+import { useDispatch, useSelector } from 'react-redux'
 import { buyProduct } from "../../actions/product";
+import { useHistory } from "react-router-dom";
 
 const Description = ({ onQuant, onAdd, onRemove, onSetOrderedQuant, product }) => {
   const dispatch = useDispatch();
-
+  const user = useSelector((state)=>state.user);
+  const history = useHistory();
   const handlePayment = (product) => {
-		
-			dispatch(buyProduct(product))
+		const token = user?.token;
+      if (token) {
+          const decodedToken = decode(token);
+          if (decodedToken.exp * 1000 > new Date().getTime()){
+            dispatch(buyProduct(product))
+          }
+      }else{
+        history.push("/login")
+      }
+      
 	};
   return (
     <section className="description">
