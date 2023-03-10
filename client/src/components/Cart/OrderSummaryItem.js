@@ -6,6 +6,8 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import {useDispatch} from "react-redux";
+import {checkout} from "../../actions/cart"
 
 const useStyles = makeStyles({
   root: {
@@ -25,9 +27,14 @@ const useStyles = makeStyles({
   }
 });
 
+
+
 export default function OrderSummaryItem({total}) {
   const classes = useStyles();
-
+  const dispatch = useDispatch()
+  const handleCheckOut = ()=>{
+    dispatch(checkout(total))
+  }
   return (
     <Card className={classes.root} elevation={15}>
       <CardContent>
@@ -70,7 +77,7 @@ export default function OrderSummaryItem({total}) {
       </CardContent>
 
       <CardActions>
-        <Button size="large" className={classes.buyButton}>
+        <Button size="large" className={classes.buyButton} onClick={()=>{handleCheckOut()}}>
           BUY NOW
         </Button>
       </CardActions>

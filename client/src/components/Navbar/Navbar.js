@@ -58,7 +58,11 @@ function Navbar({show}) {
                     <Link className="login-link" to="/">E-Commerce</Link>
                     </Typography>
                         {
-                            user ? <Button sx={{color:"black", fontWeight: "bold"}} onClick={logout}>Log Out</Button>
+                            user ? 
+                            <>
+                                <Link className="login-link" to="/cart" >Cart</Link>
+                                <Button sx={{color:"black", fontWeight: "bold"}} onClick={logout}>Log Out</Button>
+                            </>
                             :
                             <>
                                 <Link className="login-link" to="/login" >Login</Link>

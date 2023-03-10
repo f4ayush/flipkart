@@ -3,7 +3,7 @@ import  Order  from '../models/order.js';
 import Razorpay from "razorpay";
 import crypto from "crypto";
 
-const router = express.Router();
+
 
 export const getAllOrders =  async (req, res) => {
     try {
@@ -123,4 +123,3 @@ export const verifyOrder =async (req, res) => {
 }
 
 
-export default router;

@@ -23,8 +23,12 @@ export const getProduct = (productId) => API.get('/products/'+productId)
 export const addToCart = (product) => API.post('/cart', product)
 export const deleteCartItems = (productId) => API.delete('/cart/'+productId)
 export const getCartItems = () => API.get('/cart')
+export const checkout = (data) => API.post('/checkout/makePayment', data)
+export const verifyPayment = (data) => API.post('/checkout/verify', data)
 export const addProduct = (sellerData) => API.post('/products', sellerData)
 export const deleteProduct = (productDetails) => API.post('/seller/deleteProduct', productDetails)
 export const editProduct = (productDetails) => API.post('/seller/editProduct', productDetails)
+
+
 
 export const sellerProducts = (userId) => API.post('/seller/sellerProducts', { userId })
