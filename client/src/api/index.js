@@ -19,7 +19,10 @@ export const logInBuyer = (userData) => API.post('/users/login', userData)
 
 export const allProducts = () => API.get('/products')
 
-export const getProduct = (productId) => API.get('/products/'+productId,)
+export const getProduct = (productId) => API.get('/products/'+productId)
+export const addToCart = (product) => API.post('/cart', product)
+export const deleteCartItems = (productId) => API.delete('/cart/'+productId)
+export const getCartItems = () => API.get('/cart')
 export const addProduct = (sellerData) => API.post('/products', sellerData)
 export const deleteProduct = (productDetails) => API.post('/seller/deleteProduct', productDetails)
 export const editProduct = (productDetails) => API.post('/seller/editProduct', productDetails)

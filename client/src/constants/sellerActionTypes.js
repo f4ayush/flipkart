@@ -9,6 +9,10 @@ export const LOGOUT = 'LOGOUT';
 
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const ALL_PRODUCTS = 'ALL_PRODUCTS';
+
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const GET_CART_ITEMS = 'GET_CART_ITEMS';
+export const DELETE_CART_ITEMS = 'DELETE_CART_ITEMS';
 export const SELLER_PRODUCTS = 'SELLER_PRODUCTS';
 export const LOGIN_BUYER = 'LOGIN_BUYER';
 export const SIGNUP_BUYER = 'SIGNUP_BUYER';

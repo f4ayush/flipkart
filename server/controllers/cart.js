@@ -5,7 +5,9 @@ const router = express.Router();
 
 export const getAllCartItems = async (req, res) => {
     try {
-      const cart = await Cart.findOne({ user: req.user._id });
+      const cart = await Cart.findOne({ user: req.user._id }).populate('items.product', '_id name image price category')
+      .lean();
+      console.log(cart)
       if (!cart) {
         return res.status(404).send('Cart not found');
       }

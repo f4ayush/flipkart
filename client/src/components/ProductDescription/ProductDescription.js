@@ -7,22 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {getProduct} from "../../actions/product"
 export default function ProductDescription() {
-    const [quant, setQuant] = useState(0);
-  const [orderedQuant, setOrderedQuant] = useState(0);
-  
-  const addQuant = () => {
-    setQuant(quant + 1);
-  };
-
-  const removeQuant = () => {
-    setQuant(quant - 1);
-  };
-
-  const resetQuant = () => {
-    setQuant(0);
-    setOrderedQuant(0);
-  };
-  
+   
   const product = useSelector(state => state.product);
   const dispatch = useDispatch()
   const productId = useParams().productId
@@ -41,10 +26,6 @@ export default function ProductDescription() {
           <MobileGallery product={product}/>
           <Description
             product={product}
-            onQuant={quant}
-            onAdd={addQuant}
-            onRemove={removeQuant}
-            onSetOrderedQuant={setOrderedQuant}
           />
         </section>
   )

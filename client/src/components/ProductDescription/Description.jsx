@@ -1,28 +1,57 @@
-import React from "react";
+import React, {useState} from "react";
 import CartIcon from "../Icons/CartIcon";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import QuantityButton from "./QuantityButton";
 import decode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux'
 import { buyProduct } from "../../actions/product";
+import { addToCart } from "../../actions/cart";
 import { useHistory } from "react-router-dom";
 
-const Description = ({ onQuant, onAdd, onRemove, onSetOrderedQuant, product }) => {
+const Description = ({product}) => {
   const dispatch = useDispatch();
   const user = useSelector((state)=>state.user);
   const history = useHistory();
-  const handlePayment = (product) => {
-		const token = user?.token;
+  const [quant, setQuant] = useState(1);
+  const [orderedQuant, setOrderedQuant] = useState(0);
+  
+  const addQuant = () => {
+    setQuant(quant + 1);
+  };
+
+  const removeQuant = () => {
+    setQuant(quant - 1);
+  };
+
+  const checkLoggedIn = ()=>{
+    const token = user?.token;
       if (token) {
           const decodedToken = decode(token);
           if (decodedToken.exp * 1000 > new Date().getTime()){
-            dispatch(buyProduct(product))
+            return true
           }
+      }
+      return false
+  }
+  const handlePayment = (product) => {
+      if (checkLoggedIn()) {
+            dispatch(buyProduct(product))
       }else{
         history.push("/login")
       }
-      
 	};
+
+  const cartButtonHandler = ()=>{
+    if (checkLoggedIn()) {
+      dispatch(addToCart({
+        product: product._id,
+        price: product.price,
+        quantity: quant
+    }))
+    }else{
+      history.push("/login")
+    }
+  }
   return (
     <section className="description">
       <p className="pre">{product.category}</p>
@@ -38,12 +67,10 @@ const Description = ({ onQuant, onAdd, onRemove, onSetOrderedQuant, product }) =
         <s>&#8377; {product.price * 2}</s>
       </div>
       <div className="buttons">
-        <QuantityButton onQuant={onQuant} onRemove={onRemove} onAdd={onAdd} />
+        <QuantityButton onQuant={quant} onRemove={removeQuant} onAdd={addQuant} />
         <button
           className="add-to-cart"
-          onClick={() => {
-            onSetOrderedQuant(onQuant);
-          }}
+          onClick={cartButtonHandler}
         >
           <CartIcon />
           add to cart
