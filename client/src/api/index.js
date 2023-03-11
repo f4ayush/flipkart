@@ -14,7 +14,7 @@ API.interceptors.request.use((req) => {
 export const createSeller = (sellerData) => API.post('/seller/signUp', sellerData)
 export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)
 
-export const createBuyer = (userData) => API.post('/users/signp', userData)
+export const createBuyer = (userData) => API.post('/users/sign-up', userData)
 export const logInBuyer = (userData) => API.post('/users/login', userData)
 
 export const allProducts = () => API.get('/products')
