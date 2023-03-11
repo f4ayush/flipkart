@@ -26,10 +26,13 @@ export const getProduct = async (req, res) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || JWT_SECRET);
         const user = await User.findById(decoded.id);
         const cart = await Cart.findOne({ user: user._id }).lean();
-        const productArray = cart.items.filter(item=> item.product == req.params.id)
-        if(productArray.length){
-          product.inCart = true
-          console.log(product)
+
+        if(cart && cart.items){
+          const productArray = cart.items.filter(item=> item.product == req.params.id)
+          if(productArray.length){
+            product.inCart = true
+            console.log(product)
+          }
         }
       }
       
