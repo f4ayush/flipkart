@@ -33,7 +33,7 @@ export default function Cart() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container fixed>
+      <Container fixed sx={{mt:10}}>
         {
             cart.length == 0 ?
             <div className="no-items-wrapper">
