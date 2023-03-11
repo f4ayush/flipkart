@@ -13,7 +13,8 @@ const useStyles = makeStyles({
   root: {
     position: "sticky",
     top: "1rem",
-    minWidth: "275px"
+    minWidth: "275px",
+    marginTop: 15
   },
 
   title: {

@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { buyProduct } from "../../actions/product";
 import { addToCart } from "../../actions/cart";
 import { useHistory } from "react-router-dom";
+import { LoadingDescription, LoadingTitle } from "./LoadingDescription";
 
-const Description = ({product}) => {
+const Description = ({product, loading}) => {
   const dispatch = useDispatch();
   const user = useSelector((state)=>state.user);
   const history = useHistory();
@@ -68,10 +69,20 @@ const Description = ({product}) => {
   return (
     <section className="description">
       <p className="pre">{product.category}</p>
-      <h1>{product.name}</h1>
-      <p className="desc">
-        {product.description}
-      </p>
+      {
+        loading ? <>
+        <LoadingTitle/>
+        <LoadingDescription />
+        </> :
+          <>
+            <h1>{product.name}</h1>
+            <p className="desc">
+              {product.description}
+            </p>
+          </>
+        
+      }
+      
       <div className="price">
         <div className="main-tag">
           <p>&#8377; {product.price}</p>

@@ -11,10 +11,12 @@ import thumb2 from "../../Pictures/image-product-2-thumbnail.jpg";
 import thumb3 from "../../Pictures/image-product-3-thumbnail.jpg";
 import thumb4 from "../../Pictures/image-product-4-thumbnail.jpg";
 
+import { LoadingImage, LoadingThumbnail } from "./LoadingDescription";
+
 const IMAGES = [prod1, prod2, prod3, prod4];
 const THUMBS = [thumb1, thumb2, thumb3, thumb4];
 
-const Gallery = ({product}) => {
+const Gallery = ({ product, loading }) => {
   const [currentImage, setCurrentImage] = useState(prod1);
   const [currentPassedImage, setCurrentPassedImage] = useState(prod1);
 
@@ -37,21 +39,27 @@ const Gallery = ({product}) => {
   useEffect(() => {
     setCurrentPassedImage(currentImage);
   }, [currentImage]);
-  
+
   return (
     <section className="gallery-holder hide-in-mobile">
       <section className="gallery">
-        <div className="image">
-          <img src={product.image} alt="product-1" onClick={handleToggle} />
-        </div>
+        {loading ? (
+          <LoadingImage />
+        ) : (
+          <div className="image">
+            <img src={product.image} alt="product-1" onClick={handleToggle} />
+          </div>
+        )}
         <BackdropGallery
           handleClose={handleClose}
           open={open}
           currentPassedImage={currentPassedImage}
         />
         <div className="thumbnails">
+        
           {THUMBS.map((th, index) => {
             return (
+              loading ? <LoadingThumbnail/> :
               <div
                 className="img-holder"
                 key={index}

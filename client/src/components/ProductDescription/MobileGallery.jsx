@@ -7,11 +7,12 @@ import prod3 from "../../Pictures/image-product-3.jpg";
 import prod4 from "../../Pictures/image-product-4.jpg";
 import NextIcon from "../Icons/NextIcon";
 import PreviousIcon from "../Icons/PreviousIcon";
+import { LoadingImage } from "./LoadingDescription";
 
 const IMAGES = [prod1, prod2, prod3, prod4];
 
 
-const MobileGallery = ({product}) => {
+const MobileGallery = ({product, loading}) => {
   const [currentMobileImage, setCurrentMobileImage] = useState(prod1);
   const [mobileImageIndex, setMobileImageIndex] = useState(1);
   
@@ -50,7 +51,8 @@ const MobileGallery = ({product}) => {
       >
         <PreviousIcon />
       </IconButton>
-      <img src={product.image} alt="featured-product" />
+      {loading ? <LoadingImage/> : <img src={product.image} alt="featured-product" />}
+      
       <IconButton
         className="icon-button-next"
         disableRipple

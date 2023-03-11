@@ -9,6 +9,7 @@ export const LOGOUT = 'LOGOUT';
 
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const ALL_PRODUCTS = 'ALL_PRODUCTS';
+export const RESET_PRODUCT = 'RESET_PRODUCT';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const GET_CART_ITEMS = 'GET_CART_ITEMS';

@@ -79,7 +79,7 @@ ul {
 @media (max-width: 768px) {
   .core {
     width: unset;
-    margin: unset;
+    /* margin: unset; */
     flex-direction: column;
     gap: unset;
     margin-bottom: 100px;
@@ -269,13 +269,13 @@ ul {
   gap: 20px;
 }
 
-.gallery .image img {
+.gallery .image img, .image-place-holder {
   height: 415px;
   border-radius: 10px;
   cursor: pointer;
 }
 @media (max-width: 992px) {
-  .gallery .image img {
+  .gallery .image img, .image-place-holder {
     height: 350px;
   }
 }
@@ -286,13 +286,13 @@ ul {
   gap: 20px;
 }
 
-.gallery .thumbnails .img-holder {
+.gallery .thumbnails .img-holder, .thumbnail-place-holder {
   position: relative;
   height: 90px;
   width: 90px;
 }
 @media (max-width: 992px) {
-  .gallery .thumbnails .img-holder {
+  .gallery .thumbnails .img-holder, .thumbnail-place-holder {
     height: 75px;
     width: 75px;
   }
@@ -366,6 +366,7 @@ ul {
 .mobile-gallery img {
   width: 100%;
   aspect-ratio: 1;
+  object-fit: contain;
 }
 
 .mobile-gallery button {

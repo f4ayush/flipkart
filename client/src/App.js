@@ -1,8 +1,7 @@
 
 import './App.css';
-import React, { useEffect, useLayoutEffect, useState, useRef } from 'react'
+import React, { useLayoutEffect, useState, useRef } from 'react'
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
-import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from './components/Admin/Admin'
 import Seller from './components/Login/Seller/Seller';
@@ -10,7 +9,6 @@ import Buyer from './components/Login/Buyer/Buyer';
 import Home from './components/Home/Home';
 import { useScrollPosition } from './hooks/useScrollPosition';
 import ProductDescription from './components/ProductDescription/ProductDescription';
-import Product from './components/Products/Product';
 import Cart from './components/Cart/Cart';
 const ScrollToTop = withRouter(({ children, location: { pathname } }) => {
   useLayoutEffect(() => {

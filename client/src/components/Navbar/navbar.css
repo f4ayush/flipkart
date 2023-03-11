@@ -10,6 +10,7 @@
     transition: all .5s ease 0s !important;
     color: black;
     width: 100%;
+    position: fixed !important;
 }
 
 

@@ -1,12 +1,12 @@
-import { GET_PRODUCT } from '../constants/sellerActionTypes'
+import { GET_PRODUCT, RESET_PRODUCT } from '../constants/sellerActionTypes'
 
 
 export default (product = {}, action) => {
     switch (action.type) {
         case GET_PRODUCT:
             return action.product;
-        // case LIKE:
-        //     return products.map((post) => (post._id === action.payload._id ? action.payload : post));
+        case RESET_PRODUCT:
+            return {};
         // case CREATE:
         //     return [...products, action.payload];
         // case UPDATE:
