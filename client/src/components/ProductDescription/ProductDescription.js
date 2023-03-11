@@ -14,7 +14,6 @@ export default function ProductDescription() {
   
   useEffect(() => {
     if(productId){
-      console.log(productId)
         dispatch(getProduct(productId));
     }
   }, [dispatch])

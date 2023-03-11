@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CartIcon from "../Icons/CartIcon";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import QuantityButton from "./QuantityButton";
@@ -13,7 +13,14 @@ const Description = ({product}) => {
   const user = useSelector((state)=>state.user);
   const history = useHistory();
   const [quant, setQuant] = useState(1);
+  const [inCart, setinCart] = useState(product.inCart)
   const [orderedQuant, setOrderedQuant] = useState(0);
+  console.log(inCart, product)
+
+  useEffect(() => {
+    setinCart(product.inCart)
+  }, [product])
+  
   
   const addQuant = () => {
     setQuant(quant + 1);
@@ -43,11 +50,17 @@ const Description = ({product}) => {
 
   const cartButtonHandler = ()=>{
     if (checkLoggedIn()) {
-      dispatch(addToCart({
-        product: product._id,
-        price: product.price,
-        quantity: quant
-    }))
+      if(inCart){
+        history.push("/cart")
+      }else{
+        dispatch(addToCart({
+          product: product._id,
+          price: product.price,
+          quantity: quant
+        }))
+        setinCart(true)
+      }
+      
     }else{
       history.push("/login")
     }
@@ -69,11 +82,11 @@ const Description = ({product}) => {
       <div className="buttons">
         <QuantityButton onQuant={quant} onRemove={removeQuant} onAdd={addQuant} />
         <button
-          className="add-to-cart"
+          className="add-to-cart" 
           onClick={cartButtonHandler}
         >
           <CartIcon />
-          add to cart
+          {inCart ? "Go To Cart" : "Add To Cart"}
         </button>
         <button
           className="buy-now add-to-cart"

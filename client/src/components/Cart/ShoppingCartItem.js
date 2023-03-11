@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "200px"
   },
   priceColor:{
-    color: "var(--orange)"
+    color: "var(--orange)",
+    display: 'flex',
+    flexDirection: "column"
   }
 }));
 
@@ -95,7 +97,7 @@ export default function ShoppingCartItem({items}) {
               {items.quantity}
             </Typography>
           </Grid>
-          <Grid item xs={10} sm={9} md={10} lg={10}>
+          <Grid item xs={10} sm={9} md={8} lg={8}>
             <Typography
               variant="body1"
               component="div"
@@ -104,10 +106,10 @@ export default function ShoppingCartItem({items}) {
               Price
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={2} md={2} lg={1}>
-            <Typography variant="h6" component="div" className={classes.priceColor}>
-              &#8377; {items.price}
-            </Typography>
+          <Grid item xs={2} sm={3} md={4} lg={4}>
+            <div variant="h6" component="div" className={classes.priceColor}>
+              ₹ {items.price}
+            </div>
           </Grid>
         </Grid>
       </CardContent>

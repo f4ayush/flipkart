@@ -1,0 +1,10 @@
+.no-items-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.no-items-wrapper img{
+    width: 20vw;
+}
