@@ -9,7 +9,7 @@ const QuantityButton = ({ onQuant, onRemove, onAdd }) => {
         <img src={minus} alt="icon-minus" />
       </button>
       <p>{onQuant}</p>
-      <button className="plus" onClick={onAdd} disabled={onQuant === 100}>
+      <button className="plus" onClick={onAdd} disabled={onQuant === 10}>
         <img src={plus} alt="icon-plus" />
       </button>
     </div>

@@ -1,51 +1,101 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import DeleteIcon from '@mui/icons-material/Delete';
-import {useDispatch } from 'react-redux';
-import { deleteCartItems } from "../../actions/cart";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import TextField from '@mui/material/TextField';
+import { useDispatch } from "react-redux";
+import { deleteCartItems, updateCartItem } from "../../actions/cart";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    marginTop: 15
+    marginTop: 15,
   },
   details: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   content: {
-    flex: "1 0 auto"
+    flex: "1 1 auto"
   },
   cover: {
     width: 151,
-    backgroundSize: 'contain'
+    backgroundSize: "contain",
   },
-  productName:{
+  productName: {
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    maxWidth: "200px"
+    maxWidth: "200px",
   },
-  priceColor:{
+  priceColor: {
     color: "var(--orange)",
-    display: 'flex',
-    flexDirection: "column"
+    display: "flex",
+    flexDirection: "column",
+  },
+  deleteButton: {
+    cursor: "pointer",
+  },
+  cartButtons: {
+    minWidth: "28px",
+    height: "28px",
+    background: "linear-gradient(#fff,#f9f9f9)",
+    display: "inline-block",
+    border: "1px solid #c2c2c2",
+    cursor: "pointer",
+    fontSize: "16px",
+    borderRadius: "50%",
+    paddingTop: "1px",
+    lineHeight: 1,
+  },
+  cartQuantity:{
+    display: "inline-block",
+    padding: "3px 6px",
+    // width: "calc(100% - 60px)",
+    height: '100%',
+    width: "46px",
+    height: "28px",
+    borderRadius: "2px",
+    backgroundColor: "#fff",
+    border: "1px solid #c2c2c2",
+    margin: "0 5px"
+  },
+  cartQuantityInput:{
+    border: "none",
+    width: "20%",
+    fontSize: "14px",
+    padding: "4px 0 5px 20%",
+    fontWeight: "500",
+    verticalAlign: "middle",
+    textAlign: "center"
   }
 }));
 
-const titleStyle = {
-  display: "flex",
-  justifyContent: "space-between"
-}
 
-export default function ShoppingCartItem({items}) {
+export default function ShoppingCartItem({ items, getTotal }) {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [quantity, setquantity] = useState(0)
+  const increaseQuantity = ()=>{
+      dispatch(updateCartItem({...items, quantity: quantity+1}))
+      setquantity(quantity + 1)  
+      getTotal()
+  }
+  const decreaseQuantity = ()=>{
+      dispatch(updateCartItem({...items, quantity: quantity-1}))
+      setquantity(quantity-1)  
+      getTotal()
+  }
+
+  useEffect(() => {
+    setquantity(items.quantity)
+    console.log(items.quantity)
+  }, [items])
+  
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -54,12 +104,12 @@ export default function ShoppingCartItem({items}) {
         title="Live from space album cover"
       />
       <CardContent className={classes.content}>
-        <CardMedia
+        {/* <CardMedia
           className={classes.cover}
           image="https://source.unsplash.com/random"
           title="Live from space album cover"
-        />
-        <div style={titleStyle}>
+        /> */}
+        <Stack direction="row" justifyContent="space-between">
           <Typography
             className={classes.title}
             color="textSecondary"
@@ -68,16 +118,23 @@ export default function ShoppingCartItem({items}) {
             {items.product.category}
           </Typography>
 
-          <DeleteIcon onClick={()=>dispatch(deleteCartItems(items._id))}/>
-        </div>
-        <Typography className={classes.productName} variant="div" component="h2">
+          <DeleteIcon
+            className={classes.deleteButton}
+            onClick={() => dispatch(deleteCartItems(items._id))}
+          />
+        </Stack>
+        <Typography
+          className={classes.productName}
+          variant="div"
+          component="h2"
+        >
           {items.product.name}
         </Typography>
         <Typography variant="subtitle2">
           <hr />
         </Typography>
-        <Grid container>
-          <Grid item xs={11} sm={11} md={11} lg={11}>
+
+        {/* <Grid item xs={11} sm={11} md={11} lg={11}>
             <Typography variant="body1" component="div">
               Size
             </Typography>
@@ -86,32 +143,30 @@ export default function ShoppingCartItem({items}) {
             <Typography variant="h6" component="div">
               NA
             </Typography>
-          </Grid>
-          <Grid item xs={11} sm={11} md={11} lg={11}>
-            <Typography variant="body1" component="div">
-              Quantity
-            </Typography>
-          </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Typography variant="h6" component="div">
-              {items.quantity}
-            </Typography>
-          </Grid>
-          <Grid item xs={10} sm={9} md={8} lg={8}>
-            <Typography
-              variant="body1"
-              component="div"
-              style={{ fontWeight: "bold" }}
-            >
-              Price
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={3} md={4} lg={4}>
-            <div variant="h6" component="div" className={classes.priceColor}>
-              ₹ {items.price}
-            </div>
-          </Grid>
-        </Grid>
+          </Grid> */}
+        <Stack direction="row" justifyContent="space-between">
+          <Typography variant="body1" component="div">
+            Quantity
+          </Typography>
+
+          <Stack spacing={1} direction="row" justifyContent="end">
+            <Button onClick={decreaseQuantity} className={classes.cartButtons} disabled={quantity <= 0}>-</Button>
+            <Typography variant="body1" component="div">{quantity}</Typography>
+            <Button onClick={increaseQuantity} className={classes.cartButtons} disabled={quantity >= 10}>+</Button>
+          </Stack>
+        </Stack>
+        <Stack direction="row" justifyContent="space-between">
+          <Typography
+            variant="body1"
+            component="div"
+            style={{ fontWeight: "bold" }}
+          >
+            Price
+          </Typography>
+          <div variant="h6" component="div" className={classes.priceColor}>
+            ₹ {quantity * items.price}
+          </div>
+        </Stack>
       </CardContent>
     </Card>
   );

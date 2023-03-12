@@ -12,18 +12,17 @@ export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)   
   const [total, settotal] = useState(0);
-  const getTotal = (items)=>{
-    const total = items.reduce((ac, cur)=>{
-      ac += cur.price
+  const getTotal = ()=>{
+    const total = cart.reduce((ac, cur)=>{
+      ac += (cur.price * cur.quantity)
       return ac
     },0)
-
+    console.log(total)
     settotal(total)
   }
   useEffect(() => {
       dispatch(getCartItems());
-      
-  }, [dispatch]);
+  }, []);
   
   useEffect(() => {
     getTotal(cart)
@@ -48,7 +47,7 @@ export default function Cart() {
                   <Grid item xs>
                     {
                       cart.map((items, i)=>(
-                        <ShoppingCartItem key={i} items={items}/>
+                        <ShoppingCartItem getTotal={getTotal} key={i} items={items}/>
                       ))
                     }
                   </Grid>

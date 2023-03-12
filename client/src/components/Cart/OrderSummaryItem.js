@@ -28,8 +28,6 @@ const useStyles = makeStyles({
   }
 });
 
-
-
 export default function OrderSummaryItem({total}) {
   const classes = useStyles();
   const dispatch = useDispatch()
@@ -56,12 +54,12 @@ export default function OrderSummaryItem({total}) {
         <Grid container>
           <Grid item xs={10} sm={10} md={10} lg={10}>
             <Typography variant="body1" component="div">
-              Shipping
+              Delivery Charges
             </Typography>
           </Grid>
           <Grid item xs={2} sm={2} md={2} lg={2}>
             <Typography variant="h6" component="div">
-            &#8377;0
+              Free
             </Typography>
           </Grid>
           <Grid item xs={10} sm={10} md={10} lg={10}>
