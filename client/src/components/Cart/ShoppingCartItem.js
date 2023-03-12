@@ -150,7 +150,7 @@ export default function ShoppingCartItem({ items, getTotal }) {
           </Typography>
 
           <Stack spacing={1} direction="row" justifyContent="end">
-            <Button onClick={decreaseQuantity} className={classes.cartButtons} disabled={quantity <= 0}>-</Button>
+            <Button onClick={decreaseQuantity} className={classes.cartButtons} disabled={quantity <= 1}>-</Button>
             <Typography variant="body1" component="div">{quantity}</Typography>
             <Button onClick={increaseQuantity} className={classes.cartButtons} disabled={quantity >= 10}>+</Button>
           </Stack>
