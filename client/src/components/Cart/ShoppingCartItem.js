@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     fontSize: "16px",
     borderRadius: "50%",
-    paddingTop: "1px",
-    lineHeight: 1,
+    paddingTop: "4px",
+    lineHeight: 1
   },
   cartQuantity:{
     display: "inline-block",
