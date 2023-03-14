@@ -129,6 +129,7 @@ ul {
   color: var(--d-grayish-blue);
   font-weight: 500;
   line-height: 1.7;
+  text-align: justify;
 }
 @media (max-width: 768px) {
   .description p.desc {
