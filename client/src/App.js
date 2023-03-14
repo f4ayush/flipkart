@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import { useScrollPosition } from './hooks/useScrollPosition';
 import ProductDescription from './components/ProductDescription/ProductDescription';
 import Cart from './components/Cart/Cart';
+import NewBar from './components/Navbar/NewBar';
 const ScrollToTop = withRouter(({ children, location: { pathname } }) => {
   useLayoutEffect(() => {
     // window.scrollTo(0, 0)
@@ -34,6 +35,7 @@ function App() {
     <Router>
       {/* <ScrollToTop> */}
       <Navbar show={hideOnScroll}/>
+      {/* <NewBar/> */}
       <Switch>
         <Route path='/seller' exact component={Admin} />
         <Route path='/loginSeller' exact component={Seller} />

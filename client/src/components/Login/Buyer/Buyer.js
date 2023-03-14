@@ -11,10 +11,12 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useHistory, useLocation } from 'react-router-dom'
 import { loginBuyer, signUpBuyer } from '../../../actions/login'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import "../login.css"
 
 function Copyright(props) {
@@ -38,6 +40,7 @@ export default function SignIn() {
     const dispatch = useDispatch()
     const location = useLocation()
     const history = useHistory()
+    const error = useSelector(state=> state.error)
     
     useEffect(() => {
         if(location.pathname.includes("sign-up")){
@@ -80,6 +83,7 @@ export default function SignIn() {
                 { isSignup ? "Sign Up" : "Login" }
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            {error && <Alert severity="error">{error}</Alert>}
             {
                 isSignup && 
                 <>
@@ -111,6 +115,7 @@ export default function SignIn() {
                 required
                 fullWidth
                 id="email"
+                type='email'
                 label="Email Address"
                 name="email"
                 autoComplete="email"

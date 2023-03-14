@@ -4,11 +4,13 @@ import allProducts from './allProducts'
 import sellerProducts from "./sellerProducts";
 import product from "./product";
 import cart from "./cart";
+import error from "./error";
 
 export default combineReducers({
     user,
     allProducts,
     sellerProducts,
     product,
-    cart
+    cart,
+    error
 })

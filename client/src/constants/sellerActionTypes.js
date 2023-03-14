@@ -23,3 +23,7 @@ export const SIGNUP_BUYER = 'SIGNUP_BUYER';
 export const MAKE_PAYMENT = 'MAKE_PAYMENT';
 
 export const USER = 'USER';
+
+
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const RESET_LOGIN_ERROR_MESSAGE = 'RESET_LOGIN_ERROR_MESSAGE';
