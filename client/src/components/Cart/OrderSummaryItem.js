@@ -6,6 +6,8 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+
 import {useDispatch} from "react-redux";
 import {checkout} from "../../actions/cart"
 
@@ -45,34 +47,34 @@ export default function OrderSummaryItem({total}) {
           Shopping Cart
         </Typography>
         <Typography variant="div" component="h1">
-          {" "}
           Order Summary
         </Typography>
         <Typography variant="subtitle2">
           <hr />
         </Typography>
-        <Grid container>
-          <Grid item xs={10} sm={10} md={10} lg={10}>
+        
+        <Stack direction="row" justifyContent="space-between">
             <Typography variant="body1" component="div">
               Delivery Charges
             </Typography>
-          </Grid>
-          <Grid item xs={2} sm={2} md={2} lg={2}>
+          
+          
             <Typography variant="h6" component="div">
               Free
             </Typography>
-          </Grid>
-          <Grid item xs={10} sm={10} md={10} lg={10}>
+          </Stack>
+
+          <Stack direction="row" justifyContent="space-between">
             <Typography variant="body1" component="div">
               Total
             </Typography>
-          </Grid>
-          <Grid item xs={2} sm={2} md={2} lg={2}>
+          
+          
             <Typography variant="h6" component="div">
             &#8377;{total}
             </Typography>
-          </Grid>
-        </Grid>
+          
+        </Stack>
       </CardContent>
 
       <CardActions>

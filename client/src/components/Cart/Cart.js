@@ -47,7 +47,7 @@ export default function Cart() {
                   <Grid item xs>
                     {
                       cart.map((items, i)=>(
-                        <ShoppingCartItem getTotal={getTotal} key={i} items={items}/>
+                        <ShoppingCartItem settotal={settotal} total={total} key={i} items={items}/>
                       ))
                     }
                   </Grid>

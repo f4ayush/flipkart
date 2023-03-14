@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { makeStyles } from "@mui/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -76,20 +76,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ShoppingCartItem({ items, getTotal }) {
+export default function ShoppingCartItem({ items, settotal, total }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [quantity, setquantity] = useState(0)
-  const increaseQuantity = ()=>{
-      dispatch(updateCartItem({...items, quantity: quantity+1}))
-      setquantity(quantity + 1)  
-      getTotal()
+  const timeout = useRef()
+
+  function debounce(func, delay) {
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeout.current)
+      timeout.current = setTimeout(() => func.apply(context, args), delay);
+    }
   }
-  const decreaseQuantity = ()=>{
-      dispatch(updateCartItem({...items, quantity: quantity-1}))
-      setquantity(quantity-1)  
-      getTotal()
-  }
+  
+  const debouncedIncreaseQuantity = debounce(() => {
+    dispatch(updateCartItem({...items, quantity: quantity + 1}));
+    
+  }, 500);
+  
+  const debouncedDecreaseQuantity = debounce(() => {
+    dispatch(updateCartItem({...items, quantity: quantity - 1}));
+    
+  }, 500);
+  
+  const increaseQuantity = () => {
+    debouncedIncreaseQuantity();
+    setquantity(quantity + 1);
+    settotal(items.price + total);
+  };
+  
+  const decreaseQuantity = () => {
+    debouncedDecreaseQuantity();
+    setquantity(quantity - 1);
+    settotal(total - items.price);
+  };
+  
 
   useEffect(() => {
     setquantity(items.quantity)
