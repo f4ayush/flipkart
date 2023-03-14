@@ -19,10 +19,10 @@ export default function Products() {
              products.length == 0 && <LoadingProducts />
           }
           {products.map((product) => (
-            <Grid item key={product._id} xs={12} sm={8} md={6} lg={4} >
+            <Grid item key={product._id} xs={12} sm={8} md={6} lg={4}>
               <Card
               className="single-product"
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius:0 }}
+                sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius:0, marginTop:"10px" }}
               >
                 <Link to={"product-description/"+product._id}>
                 <CardMedia
