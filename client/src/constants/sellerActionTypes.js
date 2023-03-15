@@ -9,6 +9,8 @@ export const LOGOUT = 'LOGOUT';
 
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const ALL_PRODUCTS = 'ALL_PRODUCTS';
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
+
 export const RESET_PRODUCT = 'RESET_PRODUCT';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
@@ -26,4 +28,6 @@ export const USER = 'USER';
 
 
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const NO_PRODUCTS_MESSAGE = 'NO_PRODUCTS_MESSAGE';
+export const RESET_NO_PRODUCTS_MESSAGE = 'RESET_NO_PRODUCTS_MESSAGE';
 export const RESET_LOGIN_ERROR_MESSAGE = 'RESET_LOGIN_ERROR_MESSAGE';

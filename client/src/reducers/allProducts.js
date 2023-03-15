@@ -1,12 +1,12 @@
-import { ALL_PRODUCTS } from '../constants/sellerActionTypes'
+import { ALL_PRODUCTS, SEARCH_PRODUCTS } from '../constants/sellerActionTypes'
 import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/sellerActionTypes';
 
 export default (products = [], action) => {
     switch (action.type) {
         case ALL_PRODUCTS:
             return action.products;
-        // case LIKE:
-        //     return products.map((post) => (post._id === action.payload._id ? action.payload : post));
+        case SEARCH_PRODUCTS:
+            return action.products;
         // case CREATE:
         //     return [...products, action.payload];
         // case UPDATE:

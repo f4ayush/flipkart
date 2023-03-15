@@ -87,4 +87,23 @@ export const deleteProduct = async (req, res) => {
       res.status(500).send('Server Error');
     }
 }
-export default router;
+
+export const searchProducts = async (req, res) => {
+  try {
+    const searchQuery = req.query.q; 
+    const filter = {
+      $or: [
+        { name: { $regex: searchQuery, $options: 'i' } },
+        { category: { $regex: searchQuery, $options: 'i' } },
+      ],
+    };
+    const products = await Product.find(filter);
+    // const products = await Product.find({ $text: { $regex: searchQuery  } });
+
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server 1');
+  }
+  
+};

@@ -19,6 +19,7 @@ export const logInBuyer = (userData) => API.post('/users/login', userData)
 export const allProducts = () => API.get('/products')
 
 export const getProduct = (productId) => API.get('/products/'+productId)
+export const searchProducts = (param) => API.get('/products/search?q='+param)
 export const addToCart = (product) => API.post('/cart', product)
 export const updateCartItem = (product) => API.put('/cart/'+product._id, product)
 export const deleteCartItems = (productId) => API.delete('/cart/'+productId)
