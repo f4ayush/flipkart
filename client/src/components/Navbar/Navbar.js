@@ -18,7 +18,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import * as actionType from "../../constants/sellerActionTypes";
+import * as actionType from "../../constants/actionTypes";
 import "./navbar.css";
 import { searchProducts } from "../../actions/allProducts";
 
@@ -124,7 +124,9 @@ export default function NewBar({ show }) {
     };
   } 
   const debouncedSearch = debounce((searchParam) => {
+    history.push("/search")
     dispatch(searchProducts(searchParam));
+    setsearchParam("")
   }, 500);
 
   const handleSearch = (e)=>{

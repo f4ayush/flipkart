@@ -1,6 +1,6 @@
 import * as api from '../api/index'
 import axios from 'axios';
-import { DELETE_CART_ITEMS, DELETE_ALL_CART_ITEMS, ADD_TO_CART, GET_CART_ITEMS, UPDATE_CART_ITEM } from '../constants/sellerActionTypes'
+import { DELETE_CART_ITEMS, DELETE_ALL_CART_ITEMS, ADD_TO_CART, GET_CART_ITEMS, UPDATE_CART_ITEM } from '../constants/actionTypes'
 
 export const addToCart = (product) => async (dispatch) => {
     try {

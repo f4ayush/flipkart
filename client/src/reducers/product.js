@@ -1,4 +1,4 @@
-import { GET_PRODUCT, RESET_PRODUCT } from '../constants/sellerActionTypes'
+import { GET_PRODUCT, RESET_PRODUCT } from '../constants/actionTypes'
 
 
 export default (product = {}, action) => {

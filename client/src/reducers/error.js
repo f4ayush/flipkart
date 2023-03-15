@@ -1,4 +1,4 @@
-import { RESET_LOGIN_ERROR_MESSAGE, LOGIN_FAILURE, RESET_NO_PRODUCTS_MESSAGE, NO_PRODUCTS_MESSAGE } from '../constants/sellerActionTypes'
+import { RESET_LOGIN_ERROR_MESSAGE, LOGIN_FAILURE, RESET_NO_PRODUCTS_MESSAGE, NO_PRODUCTS_MESSAGE } from '../constants/actionTypes'
 
 
 export default (message = "", action) => {

@@ -1,11 +1,12 @@
 import * as api from '../api/index'
-import { ALL_PRODUCTS, SEARCH_PRODUCTS, NO_PRODUCTS_MESSAGE, RESET_NO_PRODUCTS_MESSAGE } from '../constants/sellerActionTypes'
+import { ALL_PRODUCTS, SEARCH_PRODUCTS, NO_PRODUCTS_MESSAGE, RESET_NO_PRODUCTS_MESSAGE } from '../constants/actionTypes'
 
 export const allProducts = () => async (dispatch) => {
     try {
         const { data } = await api.allProducts()
         const action = { type: ALL_PRODUCTS, products: data }
         dispatch(action)
+        dispatch({type: RESET_NO_PRODUCTS_MESSAGE, message: ''})
     } catch (error) {
         console.log(error)
     }

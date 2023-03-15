@@ -1,5 +1,5 @@
-import { ALL_PRODUCTS, SEARCH_PRODUCTS } from '../constants/sellerActionTypes'
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/sellerActionTypes';
+import { ALL_PRODUCTS, SEARCH_PRODUCTS } from '../constants/actionTypes'
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
 export default (products = [], action) => {
     switch (action.type) {

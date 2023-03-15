@@ -1,4 +1,4 @@
-import { LOGOUT, LOGIN_BUYER, SIGNUP_BUYER } from '../constants/sellerActionTypes'
+import { LOGOUT, LOGIN_BUYER, SIGNUP_BUYER } from '../constants/actionTypes'
 export default (user = JSON.parse(localStorage.getItem("profile")), action) => {
     switch (action.type) {
         case SIGNUP_BUYER:

@@ -1,5 +1,5 @@
 import * as api from '../api/index'
-import { LOGIN_BUYER, SIGNUP_BUYER, RESET_LOGIN_ERROR_MESSAGE, LOGIN_FAILURE } from "../constants/sellerActionTypes";
+import { LOGIN_BUYER, SIGNUP_BUYER, RESET_LOGIN_ERROR_MESSAGE, LOGIN_FAILURE } from "../constants/actionTypes";
 
 export const login = (formData, history) => async (dispatch) => {
     try {

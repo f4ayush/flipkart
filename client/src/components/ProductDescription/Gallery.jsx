@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import BackdropGallery from "./BackdropGallery";
 
 import prod1 from "../../Pictures/image-product-1.jpg";
 import prod2 from "../../Pictures/image-product-2.jpg";
@@ -24,12 +23,6 @@ const Gallery = ({ product, loading }) => {
   const handleClick = (index) => {
     setCurrentImage(IMAGES[index]);
   };
-  const handleToggle = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
   const removeActivatedClass = (parent) => {
     parent.childNodes.forEach((node) => {
       node.childNodes[0].classList.contains("activated") &&
@@ -47,14 +40,9 @@ const Gallery = ({ product, loading }) => {
           <LoadingImage />
         ) : (
           <div className="image">
-            <img src={product.image} alt="product-1" onClick={handleToggle} />
+            <img src={product.image} alt="product-1"  />
           </div>
         )}
-        <BackdropGallery
-          handleClose={handleClose}
-          open={open}
-          currentPassedImage={currentPassedImage}
-        />
         <div className="thumbnails">
         
           {THUMBS.map((th, index) => {

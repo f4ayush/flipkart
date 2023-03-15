@@ -1,6 +1,6 @@
 import * as api from '../api/index'
 import axios from 'axios';
-import { GET_PRODUCT, MAKE_PAYMENT,RESET_PRODUCT } from '../constants/sellerActionTypes'
+import { GET_PRODUCT, MAKE_PAYMENT,RESET_PRODUCT } from '../constants/actionTypes'
 
 export const getProduct = (productId) => async (dispatch) => {
     try {
