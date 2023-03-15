@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
 import { deleteCartItems, updateCartItem } from "../../actions/cart";
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   content: {
-    flex: "1 1 auto"
+    flex: "1 1 auto",
   },
   cover: {
     width: 151,
@@ -50,75 +50,71 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     borderRadius: "50%",
     paddingTop: "4px",
-    lineHeight: 1
+    lineHeight: 1,
   },
-  cartQuantity:{
+  cartQuantity: {
     display: "inline-block",
     padding: "3px 6px",
     // width: "calc(100% - 60px)",
-    height: '100%',
+    height: "100%",
     width: "46px",
     height: "28px",
     borderRadius: "2px",
     backgroundColor: "#fff",
     border: "1px solid #c2c2c2",
-    margin: "0 5px"
+    margin: "0 5px",
   },
-  cartQuantityInput:{
+  cartQuantityInput: {
     border: "none",
     width: "20%",
     fontSize: "14px",
     padding: "4px 0 5px 20%",
     fontWeight: "500",
     verticalAlign: "middle",
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 }));
-
 
 export default function ShoppingCartItem({ items, settotal, total }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [quantity, setquantity] = useState(0)
-  const timeout = useRef()
+  const [quantity, setquantity] = useState(0);
+  const timeout = useRef();
 
   function debounce(func, delay) {
-    return function() {
+    return function () {
       const context = this;
       const args = arguments;
-      clearTimeout(timeout.current)
+      clearTimeout(timeout.current);
       timeout.current = setTimeout(() => func.apply(context, args), delay);
-    }
+    };
   }
-  
+
   const debouncedIncreaseQuantity = debounce(() => {
-    dispatch(updateCartItem({...items, quantity: quantity + 1}));
-    
+    dispatch(updateCartItem({ ...items, quantity: quantity + 1 }));
   }, 500);
-  
+
   const debouncedDecreaseQuantity = debounce(() => {
-    dispatch(updateCartItem({...items, quantity: quantity - 1}));
-    
+    dispatch(updateCartItem({ ...items, quantity: quantity - 1 }));
   }, 500);
-  
+
   const increaseQuantity = () => {
     debouncedIncreaseQuantity();
     setquantity(quantity + 1);
     settotal(items.price + total);
   };
-  
+
   const decreaseQuantity = () => {
     debouncedDecreaseQuantity();
     setquantity(quantity - 1);
     settotal(total - items.price);
   };
-  
 
   useEffect(() => {
-    setquantity(items.quantity)
-    console.log(items.quantity)
-  }, [items])
-  
+    setquantity(items.quantity);
+    console.log(items.quantity);
+  }, [items]);
+
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -173,9 +169,23 @@ export default function ShoppingCartItem({ items, settotal, total }) {
           </Typography>
 
           <Stack spacing={1} direction="row" justifyContent="end">
-            <Button onClick={decreaseQuantity} className={classes.cartButtons} disabled={quantity <= 1}>-</Button>
-            <Typography variant="body1" component="div">{quantity}</Typography>
-            <Button onClick={increaseQuantity} className={classes.cartButtons} disabled={quantity >= 10}>+</Button>
+            <Button
+              onClick={decreaseQuantity}
+              className={classes.cartButtons}
+              disabled={quantity <= 1}
+            >
+              -
+            </Button>
+            <Typography variant="body1" component="div">
+              {quantity}
+            </Typography>
+            <Button
+              onClick={increaseQuantity}
+              className={classes.cartButtons}
+              disabled={quantity >= 10}
+            >
+              +
+            </Button>
           </Stack>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
