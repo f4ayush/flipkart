@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actionType from "../../constants/actionTypes";
 import "./navbar.css";
 import { searchProducts } from "../../actions/allProducts";
+import { Button } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -42,7 +43,10 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
   position: "absolute",
-  pointerEvents: "none",
+  // pointerEvents: "none",
+  zIndex:99,
+  right:0,
+  cursor:"pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -53,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -76,6 +80,7 @@ export default function NewBar({ show }) {
   const location = useLocation();
   const history = useHistory();
   const cart = useSelector(state=> state.cart)
+  const searchRef = React.useRef("");
   
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
@@ -113,25 +118,11 @@ export default function NewBar({ show }) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const timeout = React.useRef();
-
-  function debounce(func, delay) {
-    return function () {
-      const context = this;
-      const args = arguments;
-      clearTimeout(timeout.current);
-      timeout.current = setTimeout(() => func.apply(context, args), delay);
-    };
-  } 
-  const debouncedSearch = debounce((searchParam) => {
-    history.push("/search")
-    dispatch(searchProducts(searchParam));
-    setsearchParam("")
-  }, 500);
 
   const handleSearch = (e)=>{
-    setsearchParam(e.target.value)
-    debouncedSearch(e.target.value)
+    history.push("/search")
+    dispatch(searchProducts(searchRef.current.value));
+    searchRef.current.value = ""
   }
 
   const menuId = "primary-search-account-menu";
@@ -255,14 +246,14 @@ export default function NewBar({ show }) {
             <Link to="/" className="title">E-Commerce</Link>
           </Typography>
           <Search>
-            <SearchIconWrapper>
+            <SearchIconWrapper onClick={handleSearch}>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              onChange={handleSearch}
-              value={searchParam}
+              onKeyPress={(e)=>e.key=="Enter" && handleSearch()}
+              inputRef={searchRef}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

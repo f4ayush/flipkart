@@ -3,10 +3,10 @@ import { ALL_PRODUCTS, SEARCH_PRODUCTS, NO_PRODUCTS_MESSAGE, RESET_NO_PRODUCTS_M
 
 export const allProducts = () => async (dispatch) => {
     try {
+        dispatch({type: RESET_NO_PRODUCTS_MESSAGE, message: ''})
         const { data } = await api.allProducts()
         const action = { type: ALL_PRODUCTS, products: data }
         dispatch(action)
-        dispatch({type: RESET_NO_PRODUCTS_MESSAGE, message: ''})
     } catch (error) {
         console.log(error)
     }

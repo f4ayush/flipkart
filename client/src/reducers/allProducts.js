@@ -5,8 +5,6 @@ export default (products = [], action) => {
     switch (action.type) {
         case ALL_PRODUCTS:
             return action.products;
-        case SEARCH_PRODUCTS:
-            return action.products;
         // case CREATE:
         //     return [...products, action.payload];
         // case UPDATE:
