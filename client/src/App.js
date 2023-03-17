@@ -9,7 +9,8 @@ import { useScrollPosition } from './hooks/useScrollPosition';
 import ProductDescription from './components/ProductDescription/ProductDescription';
 import Cart from './components/Cart/Cart';
 import SearchProduct from './components/SearchProduct/SearchProduct';
-import ForgetPassword from './components/Login/ForgetPassword/ForgetPassword';
+import ForgetPassword from './components/ForgetPassword/ForgetPassword';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 // import NewBar from './components/Navbar/NewBar';
 const ScrollToTop = withRouter(({ children, location: { pathname } }) => {
   useLayoutEffect(() => {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/cart" component={Cart}/>
         <Route path="/search" component={SearchProduct}/>
         <Route path="/forget-password" component={ForgetPassword}/>
+        <Route path="/reset-password/:token" component={ResetPassword}/>
         <Route path='/' exact component={Home} />
       </Switch>
       {/* </ScrollToTop> */}

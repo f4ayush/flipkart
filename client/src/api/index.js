@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const API = axios.create({ baseURL: 'https://flipkart-5zfu.vercel.app' })
-const API = axios.create({ baseURL: 'http://localhost:8000' })
+const API = axios.create({ baseURL: 'https://flipkart-5zfu.vercel.app' })
+// const API = axios.create({ baseURL: 'http://localhost:8000' })
 API.interceptors.request.use((req) => {
     
     if (localStorage.getItem('profile')) {
@@ -15,6 +15,8 @@ export const logInSeller = (sellerData) => API.post('/seller/login', sellerData)
 
 export const createBuyer = (userData) => API.post('/users/sign-up', userData)
 export const logInBuyer = (userData) => API.post('/users/login', userData)
+export const resetPassword = (token, password) => API.post('/users/reset-password/'+token, password)
+export const forgotPassword = (email) => API.post('/users/forgot-password', email)
 
 export const allProducts = () => API.get('/products')
 

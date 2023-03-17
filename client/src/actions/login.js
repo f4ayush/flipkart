@@ -63,6 +63,31 @@ export const signUpBuyer = (formData, history) => async (dispatch) => {
     }
 }
 
+export const forgetPassword = (email)=> async (dispatch)=>{
+    try {
+        const {data} = api.forgotPassword(email);
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+        dispatch({ type: LOGIN_FAILURE, message: error.response.data.message })
+    }
+}
+
+export const resetPassword = (token, password, confirmPassword, history)=> async (dispatch)=>{
+    try {
+        let message = checkPassword(password, confirmPassword)
+        if(message == "success"){
+            const {data} = api.resetPassword(token, {password});
+            dispatch({ type: RESET_LOGIN_ERROR_MESSAGE, message:"" })
+            // history.push("/login")
+        }else{
+            dispatch({ type: LOGIN_FAILURE, message: message })
+        }
+    } catch (error) {
+        console.log(error)
+        dispatch({ type: LOGIN_FAILURE, message: error.response.data.message })
+    }
+}
 const validate = (email,lastName, firstName, password)=>{
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(!mailformat.test(email)){
@@ -76,4 +101,13 @@ const validate = (email,lastName, firstName, password)=>{
     }else{
         return "success"
     }
+}
+
+const checkPassword = (password, confirmPassword, dispatch)=>{
+    if(password != confirmPassword){
+        return "Passwords do not match"
+    }else if(password < 5){
+        return "Password length should be greater than 5"
+    }
+    return "success"
 }
