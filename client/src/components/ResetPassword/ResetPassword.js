@@ -3,19 +3,26 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { useEffect } from "react";
 import Alert from '@mui/material/Alert';
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { resetPassword } from "../../actions/login";
+import { RESET_LOGIN_ERROR_MESSAGE, SUCCESS_MESSAGE } from "../../constants/actionTypes";
 
 export default function ResetPassword() {
     const history = useHistory()
   const error = useSelector(state=> state.error)
+  const message = useSelector(state=> state.flashMessage)
   const dispatch = useDispatch()
   const token = useParams().token;
+  useEffect(() => {
+    dispatch({ type: RESET_LOGIN_ERROR_MESSAGE, message:"" })
+    dispatch({ type: SUCCESS_MESSAGE, value: "" })
+  }, [])
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -35,6 +42,7 @@ export default function ResetPassword() {
               Set New Password
             </Typography>
             {error && <Alert severity="error">{error}</Alert>}
+          {message && <Alert severity="success">{message}</Alert>}
             <TextField
               margin="normal"
               required

@@ -82,9 +82,12 @@ export const resetPassword = async (req, res) => {
   
     try {
       const passwordDb = await ResetPassword.findOne({ token: token});
+      if(!passwordDb){
+        return res.status(400).json({ message: 'Invalid or expired token' });
+      }
       const user = await User.findById(passwordDb.user);
-  
-      if (!user || !passwordDb) {
+      
+      if (!user) {
         return res.status(400).json({ message: 'Invalid or expired token' });
       }
   

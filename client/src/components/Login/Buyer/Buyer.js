@@ -13,12 +13,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useHistory, useLocation } from 'react-router-dom'
 import { loginBuyer, signUpBuyer } from '../../../actions/login'
 import { useDispatch, useSelector } from 'react-redux'
 import "../login.css"
+import { RESET_LOGIN_ERROR_MESSAGE } from '../../../constants/actionTypes';
 
 function Copyright(props) {
   return (
@@ -42,6 +45,10 @@ export default function SignIn() {
     const location = useLocation()
     const history = useHistory()
     const error = useSelector(state=> state.error)
+    const isLoading = useSelector(state=> state.isLoading)
+    useEffect(() => {
+      dispatch({ type: RESET_LOGIN_ERROR_MESSAGE, message:"" })
+    }, [])
     
     useEffect(() => {
         if(location.pathname.includes("sign-up")){
@@ -142,7 +149,7 @@ export default function SignIn() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                {isLoading ?<CircularProgress size={24} color="inherit"/>: "Sign In" }
               </Button>
               {
                 !isSignup && 

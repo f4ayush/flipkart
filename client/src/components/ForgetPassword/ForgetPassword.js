@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { useEffect } from "react";
 import Alert from '@mui/material/Alert';
 import { TextField } from "@mui/material";
 import Box from '@mui/material/Box';
@@ -12,11 +12,19 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { forgetPassword } from "../../actions/login";
-
+import { RESET_LOGIN_ERROR_MESSAGE, SUCCESS_MESSAGE } from "../../constants/actionTypes";
+import CircularProgress from '@mui/material/CircularProgress';
 export default function ForgetPassword() {
   const history = useHistory()
   const error = useSelector(state=> state.error)
+  const isLoading = useSelector(state=> state.isLoading)
+  const message = useSelector(state=> state.flashMessage)
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch({ type: RESET_LOGIN_ERROR_MESSAGE, message:"" })
+    dispatch({ type: SUCCESS_MESSAGE, value: "" })
+  }, [])
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,6 +49,7 @@ export default function ForgetPassword() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           {error && <Alert severity="error">{error}</Alert>}
+          {message && <Alert severity="success">{message}</Alert>}
           <TextField
             margin="normal"
             required
@@ -53,7 +62,8 @@ export default function ForgetPassword() {
             autoFocus
           />
           <Button type="submit" variant="contained" sx={{ width: "100%" }}>
-            Reset Password
+            {isLoading ? <CircularProgress size={24} color="inherit"/> : "Reset Password"  }
+            
           </Button>
           </Box>
         </CardContent>

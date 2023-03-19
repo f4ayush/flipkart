@@ -15,6 +15,7 @@ export default function Products({error, products}) {
       
     return (
       <Container sx={{ py: 8, mt:5 }} maxWidth="md">
+        <Grid container spacing={4} justifyContent={{sm:"center", md:"flex-start"}}>
           {
              error ? <div className="no-items-wrapper">
              <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" />
@@ -23,7 +24,6 @@ export default function Products({error, products}) {
            </div>: (products.length == 0 && <LoadingProducts />)
           }
         
-        <Grid container spacing={4} justifyContent={{sm:"center", md:"flex-start"}}>
           {products.map((product) => (
             <Grid item key={product._id} xs={12} sm={8} md={6} lg={4}>
               <Card
